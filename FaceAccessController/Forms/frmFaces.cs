@@ -32,7 +32,7 @@ namespace FaceAccessController.Forms
         private void frmFaces_Load(object sender, EventArgs e)
         {
             base.ReadConfig();
-            face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            face = new FaceServiceClient(base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
             this.BindFace();
         }
 

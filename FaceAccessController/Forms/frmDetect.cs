@@ -37,7 +37,7 @@ namespace FaceAccessController.Forms
         {
             // 讀取設定檔
             base.ReadConfig();
-            face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            face = new FaceServiceClient(base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
             objPlUtil.TargetPanel = plTag;
             plTag.Paint += objPlUtil.OnPaint;
         }

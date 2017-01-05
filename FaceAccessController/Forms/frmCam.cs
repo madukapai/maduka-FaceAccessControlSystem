@@ -39,7 +39,7 @@ namespace FaceAccessController.Forms
         private void frmCam_Load(object sender, EventArgs e)
         {
             base.ReadConfig();
-            face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            face = new FaceServiceClient(base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
             new CognitiveUtility().BindPersonGroup(cbxPersonGroup, face, "");
             oWebCam = new WebCam();
             oWebCam.Container = picRender;

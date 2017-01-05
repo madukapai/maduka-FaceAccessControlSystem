@@ -24,7 +24,7 @@ namespace FaceAccessController.Forms
         private void frmUsers_Load(object sender, EventArgs e)
         {
             base.ReadConfig();
-            face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            face = new FaceServiceClient(base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
             this.BindPersonGroups();
         }
 

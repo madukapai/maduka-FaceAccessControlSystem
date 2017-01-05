@@ -38,12 +38,14 @@
             this.lblInteval = new System.Windows.Forms.Label();
             this.lblVisionApiKey = new System.Windows.Forms.Label();
             this.txtVisionApiKey = new System.Windows.Forms.TextBox();
+            this.txtFaceApiUrl = new System.Windows.Forms.TextBox();
+            this.lblFaceApiUrl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(403, 117);
+            this.btnCancel.Location = new System.Drawing.Point(403, 139);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(44, 19);
@@ -55,7 +57,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(356, 117);
+            this.btnSave.Location = new System.Drawing.Point(356, 139);
             this.btnSave.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(44, 19);
@@ -143,17 +145,39 @@
             this.txtVisionApiKey.Size = new System.Drawing.Size(349, 22);
             this.txtVisionApiKey.TabIndex = 8;
             // 
+            // txtFaceApiUrl
+            // 
+            this.txtFaceApiUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFaceApiUrl.Location = new System.Drawing.Point(100, 110);
+            this.txtFaceApiUrl.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.txtFaceApiUrl.Name = "txtFaceApiUrl";
+            this.txtFaceApiUrl.Size = new System.Drawing.Size(349, 22);
+            this.txtFaceApiUrl.TabIndex = 3;
+            // 
+            // lblFaceApiUrl
+            // 
+            this.lblFaceApiUrl.AutoSize = true;
+            this.lblFaceApiUrl.Location = new System.Drawing.Point(29, 113);
+            this.lblFaceApiUrl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lblFaceApiUrl.Name = "lblFaceApiUrl";
+            this.lblFaceApiUrl.Size = new System.Drawing.Size(65, 12);
+            this.lblFaceApiUrl.TabIndex = 9;
+            this.lblFaceApiUrl.Text = "Face API Url";
+            // 
             // frmCognitive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 143);
+            this.ClientSize = new System.Drawing.Size(452, 165);
+            this.Controls.Add(this.lblFaceApiUrl);
             this.Controls.Add(this.txtVisionApiKey);
             this.Controls.Add(this.lblVisionApiKey);
             this.Controls.Add(this.lblInteval);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtInterval);
+            this.Controls.Add(this.txtFaceApiUrl);
             this.Controls.Add(this.txtFaceApiKey);
             this.Controls.Add(this.txtEmotionApiKey);
             this.Controls.Add(this.lblFaceApiKey);
@@ -181,5 +205,7 @@
         private System.Windows.Forms.Label lblInteval;
         private System.Windows.Forms.Label lblVisionApiKey;
         private System.Windows.Forms.TextBox txtVisionApiKey;
+        private System.Windows.Forms.TextBox txtFaceApiUrl;
+        private System.Windows.Forms.Label lblFaceApiUrl;
     }
 }

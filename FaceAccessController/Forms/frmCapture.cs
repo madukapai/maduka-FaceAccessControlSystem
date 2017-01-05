@@ -37,7 +37,7 @@ namespace FaceAccessController.Forms
         private void frmCapture_Load(object sender, EventArgs e)
         {
             base.ReadConfig();
-            face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            face = new FaceServiceClient(base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
             new CognitiveUtility().BindPersonGroup(cbxPersonGroup, face, "");
             objPlUtil.TargetPanel = plTag;
             plTag.Paint += objPlUtil.OnPaint;

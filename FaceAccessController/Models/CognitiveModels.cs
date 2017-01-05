@@ -14,6 +14,7 @@ namespace FaceAccessController.Models
             public string FaceApiKey { get; set; }
             public string VisionApiKey { get; set; }
             public int WebCamInterval { get; set; }
+            public string FaceApiUrl { get; set; }
         }
 
         public class ListItem

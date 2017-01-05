@@ -13,6 +13,8 @@ namespace FaceAccessController.ClassLibrary
 {
     public class CognitiveUtility
     {
+        string strRootApiUrl = System.Configuration.ConfigurationManager.AppSettings["RootApiUrl"].ToString();
+
         /// <summary>
         /// 放入人員群組的資料
         /// </summary>
@@ -51,8 +53,6 @@ namespace FaceAccessController.ClassLibrary
 
             // Request headers
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", strFaceApiKey);
-            var uri = "https://api.projectoxford.ai/face/v1.0/detect";
-
             HttpResponseMessage response = null;
 
             // Request body
@@ -64,7 +64,7 @@ namespace FaceAccessController.ClassLibrary
 
                 try
                 {
-                    response = await client.PostAsync(uri, content);
+                    response = await client.PostAsync(strRootApiUrl, content);
                 }
                 catch (Exception ex)
                 {

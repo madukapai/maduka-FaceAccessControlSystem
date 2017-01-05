@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace FaceAccessController.Forms
 {
@@ -36,7 +37,7 @@ namespace FaceAccessController.Forms
         private async void btnSend_Click(object sender, EventArgs e)
         {
             // 兩個Guid送至伺服器進行比較
-            FaceServiceClient objFaceVerfity = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            FaceServiceClient objFaceVerfity = new FaceServiceClient(base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
             var res = await objFaceVerfity.VerifyAsync(System.Guid.Parse(txtFace1Guid.Text), System.Guid.Parse(txtFace2Guid.Text));
             txtResult.Text = JsonConvert.SerializeObject(res);
 
@@ -66,7 +67,7 @@ namespace FaceAccessController.Forms
                 string strFilePath = openFileDialog1.FileName;
 
                 // 上傳第二張照片，並取得Guid
-                FaceServiceClient objFaceSrv = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+                FaceServiceClient objFaceSrv = new FaceServiceClient(base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
                 Face[] objFace = await objFaceSrv.DetectAsync(File.OpenRead(strFilePath), true, true);
                 txtResult.Text = JsonConvert.SerializeObject(objFace);
 

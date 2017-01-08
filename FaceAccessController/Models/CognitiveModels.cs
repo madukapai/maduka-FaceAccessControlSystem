@@ -12,6 +12,18 @@ namespace FaceAccessController.Models
         {
             public string EmotionApiKey { get; set; }
             public string FaceApiKey { get; set; }
+            public int WebCamInterval { get; set; }
+        }
+
+        public class ListItem
+        {
+            public string Value { get; set; }
+            public string Text { get; set; }
+
+            public override string ToString()
+            {
+                return this.Text;
+            }
         }
     }
 }

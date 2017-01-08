@@ -20,12 +20,6 @@ namespace FaceAccessController
             InitializeComponent();
         }
 
-        Models.CognitiveModels.Setup objSetup = new Models.CognitiveModels.Setup()
-        {
-            EmotionApiKey = "",
-            FaceApiKey = "",
-        };
-
         /// <summary>
         /// 表單讀取的動作
         /// </summary>
@@ -55,8 +49,8 @@ namespace FaceAccessController
         {
             Forms.frmCognitive objCognitive = new Forms.frmCognitive();
             objCognitive.MdiParent = this;
-            objCognitive.SetupConfig = objSetup;
             objCognitive.Show();
+            objCognitive.WindowState = FormWindowState.Maximized;
         }
 
         /// <summary>
@@ -69,6 +63,20 @@ namespace FaceAccessController
             Forms.frmCam objCam = new Forms.frmCam();
             objCam.MdiParent = this;
             objCam.Show();
+            objCam.WindowState = FormWindowState.Maximized;
+        }
+
+        /// <summary>
+        /// 點選設定人員與群組的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mPeopleControl_Click(object sender, EventArgs e)
+        {
+            Forms.frmUsers objUsers = new Forms.frmUsers();
+            objUsers.MdiParent = this;
+            objUsers.Show();
+            objUsers.WindowState = FormWindowState.Maximized;
         }
     }
 }

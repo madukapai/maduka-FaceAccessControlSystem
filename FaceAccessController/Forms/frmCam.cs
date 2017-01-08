@@ -7,39 +7,222 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Microsoft.ProjectOxford.Face;
+using Microsoft.ProjectOxford.Face.Contract;
 using FaceAccessController.ClassLibrary;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Collections;
 
 namespace FaceAccessController.Forms
 {
     public partial class frmCam : Base.BaseForm
     {
         WebCam oWebCam;
+        FaceServiceClient face;
+        IDictionary DicPerson;
 
         public frmCam()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 攝影機畫面讀取的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmCam_Load(object sender, EventArgs e)
         {
+            base.ReadConfig();
+            face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            this.BindPersonGroup();
             oWebCam = new WebCam();
             oWebCam.Container = picWebCam;
+            tiCapture.Interval = base.SetupConfig.WebCamInterval;
         }
 
+        /// <summary>
+        /// 點選開始的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
+            oWebCam.Container.Height = picWebCam.Height;
+            oWebCam.Container.Width = picWebCam.Width;
             oWebCam.OpenConnection();
+
+            tiCapture.Enabled = true;
         }
 
+        /// <summary>
+        /// 點選停止的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStop_Click(object sender, EventArgs e)
         {
+            tiCapture.Enabled = false;
             oWebCam.Dispose();
         }
 
+        /// <summary>
+        /// 截取當下的圖片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCapture_Click(object sender, EventArgs e)
         {
             oWebCam.SaveImage();
+        }
+
+        /// <summary>
+        /// 每固定時間進行畫面取的並進行人臉辨識的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void tiCapture_Tick(object sender, EventArgs e)
+        {
+            Image objImage = oWebCam.CaptureImage();
+            picRender.Image = objImage;
+
+            // 先取出照片中的人臉與其FaceId
+            var ms = new MemoryStream();
+            objImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            Face[] faces = null;
+            try
+            {
+                // faces = await face.DetectAsync(ms);
+                HttpResponseMessage response = await this.MakeRequest(ms);
+                string strContent = await response.Content.ReadAsStringAsync();
+                faces = JsonConvert.DeserializeObject<Face[]>(strContent);
+            }
+            catch (Exception ex)
+            {
+                string strErr = ex.Message;
+            }
+
+            // 將照片中的臉，與指定的PersonGroup進行比對
+            if (faces != null)
+            {
+                Guid[] faceGuids = faces.Select(x => x.FaceId).ToArray();
+                if (faceGuids.Length > 0)
+                {
+                    string strPersonGroup = ((Models.CognitiveModels.ListItem)cbxPersonGroup.SelectedItem).Value;
+                    IdentifyResult[] result = await face.IdentifyAsync(strPersonGroup, faceGuids);
+
+                    // 取得照片中的人臉
+                    lbxPerson.Items.Clear();
+                    string strPersonNameLabel = "";
+                    for (int i = 0; i < result.Length; i++)
+                    {
+                        for (int p = 0; p < result[i].Candidates.Length; p++)
+                        {
+                            string strPersonId = result[i].Candidates[p].PersonId.ToString();
+                            string strPersonName = (DicPerson.Contains(strPersonId)) ? DicPerson[strPersonId].ToString() : "";
+                            lbxPerson.Items.Add(strPersonName);
+                            strPersonNameLabel += strPersonName + ",";
+                        }
+                    }
+
+                    // 顯示報到文字
+                    if (strPersonNameLabel != "")
+                    {
+                        strPersonNameLabel = strPersonNameLabel.Substring(0, strPersonNameLabel.Length - 1) + " 報到完成";
+                        lblPersonName.Text = strPersonNameLabel;
+                        tiPersonLabel.Enabled = true;
+                        plPersonName.Visible = true;
+                        int intFontSize = ((plPersonName.Width / 15) > 48) ? 48 : (plPersonName.Width / 15);
+                        lblPersonName.Font = new Font("微軟正黑體", intFontSize);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 報到文字一段時間消失的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tiPersonLabel_Tick(object sender, EventArgs e)
+        {
+            plPersonName.Visible = false;
+            tiPersonLabel.Enabled = false;
+        }
+
+        /// <summary>
+        /// 透過WebAPI進行人臉比對的動作
+        /// </summary>
+        /// <param name="ms"></param>
+        /// <returns></returns>
+        async Task<HttpResponseMessage> MakeRequest(MemoryStream ms)
+        {
+            var client = new HttpClient();
+
+            // Request headers
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", base.SetupConfig.FaceApiKey);
+            var uri = "https://api.projectoxford.ai/face/v1.0/detect";
+
+            HttpResponseMessage response = null;
+
+            // Request body
+            byte[] bytes = ms.ToArray();
+
+            using (var content = new ByteArrayContent(bytes))
+            {
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+                try
+                {
+                    response = await client.PostAsync(uri, content);
+                }
+                catch (Exception ex)
+                {
+                    string strErr = ex.Message;
+                }
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// 放入人員群組的資料
+        /// </summary>
+        private async void BindPersonGroup()
+        {
+            cbxPersonGroup.Items.Clear();
+            PersonGroup[] objGroup = await face.ListPersonGroupsAsync();
+            for (int i = 0; i < objGroup.Length; i++)
+            {
+                cbxPersonGroup.Items.Add(
+                    new Models.CognitiveModels.ListItem()
+                    {
+                        Text = objGroup[i].Name,
+                        Value = objGroup[i].PersonGroupId,
+                    });
+            }
+
+            if (objGroup.Length > 0)
+                cbxPersonGroup.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// 將人員群組的人員資料放入到字典檔中的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void cbxPersonGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string strPersonGroupId = ((Models.CognitiveModels.ListItem)cbxPersonGroup.SelectedItem).Value;
+            DicPerson = new Hashtable();
+            Person[] objPersons = await face.GetPersonsAsync(strPersonGroupId);
+
+            for (int i = 0; i < objPersons.Length; i++)
+                DicPerson.Add(objPersons[i].PersonId.ToString().Replace("{", "").Replace("}", ""), objPersons[i].Name);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace FaceAccessController.Forms
         {
             base.ReadConfig();
             face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
-            this.BindPersonGroup();
+            new CognitiveUtility().BindPersonGroup(cbxPersonGroup, face, "");
             oWebCam = new WebCam();
             oWebCam.Container = picWebCam;
             tiCapture.Interval = base.SetupConfig.WebCamInterval;
@@ -97,7 +97,7 @@ namespace FaceAccessController.Forms
             try
             {
                 // faces = await face.DetectAsync(ms);
-                HttpResponseMessage response = await this.MakeRequest(ms);
+                HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey);
                 string strContent = await response.Content.ReadAsStringAsync();
                 faces = JsonConvert.DeserializeObject<Face[]>(strContent);
             }
@@ -152,62 +152,6 @@ namespace FaceAccessController.Forms
         {
             plPersonName.Visible = false;
             tiPersonLabel.Enabled = false;
-        }
-
-        /// <summary>
-        /// 透過WebAPI進行人臉比對的動作
-        /// </summary>
-        /// <param name="ms"></param>
-        /// <returns></returns>
-        async Task<HttpResponseMessage> MakeRequest(MemoryStream ms)
-        {
-            var client = new HttpClient();
-
-            // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", base.SetupConfig.FaceApiKey);
-            var uri = "https://api.projectoxford.ai/face/v1.0/detect";
-
-            HttpResponseMessage response = null;
-
-            // Request body
-            byte[] bytes = ms.ToArray();
-
-            using (var content = new ByteArrayContent(bytes))
-            {
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-
-                try
-                {
-                    response = await client.PostAsync(uri, content);
-                }
-                catch (Exception ex)
-                {
-                    string strErr = ex.Message;
-                }
-            }
-
-            return response;
-        }
-
-        /// <summary>
-        /// 放入人員群組的資料
-        /// </summary>
-        private async void BindPersonGroup()
-        {
-            cbxPersonGroup.Items.Clear();
-            PersonGroup[] objGroup = await face.ListPersonGroupsAsync();
-            for (int i = 0; i < objGroup.Length; i++)
-            {
-                cbxPersonGroup.Items.Add(
-                    new Models.CognitiveModels.ListItem()
-                    {
-                        Text = objGroup[i].Name,
-                        Value = objGroup[i].PersonGroupId,
-                    });
-            }
-
-            if (objGroup.Length > 0)
-                cbxPersonGroup.SelectedIndex = 0;
         }
 
         /// <summary>

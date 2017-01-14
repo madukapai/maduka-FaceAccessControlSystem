@@ -78,5 +78,18 @@ namespace FaceAccessController
             objUsers.Show();
             objUsers.WindowState = FormWindowState.Maximized;
         }
+
+        /// <summary>
+        /// 照片上傳的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mCapture_Click(object sender, EventArgs e)
+        {
+            Forms.frmCapture objCapture = new Forms.frmCapture();
+            objCapture.MdiParent = this;
+            objCapture.Show();
+            objCapture.WindowState = FormWindowState.Maximized;
+        }
     }
 }

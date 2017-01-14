@@ -98,7 +98,7 @@ namespace FaceAccessController.ClassLibrary
             string DeviceIndex = Convert.ToString(DeviceID);
             IntPtr oHandle = Container.Handle;
             {
-                MessageBox.Show("You should set the container property");
+                // MessageBox.Show("You should set the container property");
             }
 
             // Open Preview window in picturebox .

@@ -35,6 +35,7 @@
             this.mSetup = new System.Windows.Forms.ToolStripMenuItem();
             this.mPeopleControl = new System.Windows.Forms.ToolStripMenuItem();
             this.mCognitive = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCapture = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,31 +47,32 @@
             this.mSetup});
             this.mMenu.Location = new System.Drawing.Point(0, 0);
             this.mMenu.Name = "mMenu";
-            this.mMenu.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            this.mMenu.Size = new System.Drawing.Size(567, 24);
+            this.mMenu.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.mMenu.Size = new System.Drawing.Size(1229, 42);
             this.mMenu.TabIndex = 1;
             this.mMenu.Text = "menuStrip1";
             // 
             // mFile
             // 
             this.mFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mCapture,
             this.mWebCam,
             this.mExit});
             this.mFile.Name = "mFile";
-            this.mFile.Size = new System.Drawing.Size(43, 22);
+            this.mFile.Size = new System.Drawing.Size(73, 38);
             this.mFile.Text = "檔案";
             // 
             // mWebCam
             // 
             this.mWebCam.Name = "mWebCam";
-            this.mWebCam.Size = new System.Drawing.Size(110, 22);
-            this.mWebCam.Text = "新視窗";
+            this.mWebCam.Size = new System.Drawing.Size(269, 38);
+            this.mWebCam.Text = "影像偵測";
             this.mWebCam.Click += new System.EventHandler(this.mWebCam_Click);
             // 
             // mExit
             // 
             this.mExit.Name = "mExit";
-            this.mExit.Size = new System.Drawing.Size(110, 22);
+            this.mExit.Size = new System.Drawing.Size(269, 38);
             this.mExit.Text = "離開";
             this.mExit.Click += new System.EventHandler(this.mExit_Click);
             // 
@@ -80,32 +82,39 @@
             this.mPeopleControl,
             this.mCognitive});
             this.mSetup.Name = "mSetup";
-            this.mSetup.Size = new System.Drawing.Size(43, 22);
+            this.mSetup.Size = new System.Drawing.Size(73, 38);
             this.mSetup.Text = "設定";
             // 
             // mPeopleControl
             // 
             this.mPeopleControl.Name = "mPeopleControl";
-            this.mPeopleControl.Size = new System.Drawing.Size(185, 22);
+            this.mPeopleControl.Size = new System.Drawing.Size(333, 38);
             this.mPeopleControl.Text = "群組與人員清單";
             this.mPeopleControl.Click += new System.EventHandler(this.mPeopleControl_Click);
             // 
             // mCognitive
             // 
             this.mCognitive.Name = "mCognitive";
-            this.mCognitive.Size = new System.Drawing.Size(185, 22);
+            this.mCognitive.Size = new System.Drawing.Size(333, 38);
             this.mCognitive.Text = "Microsoft Cognitive";
             this.mCognitive.Click += new System.EventHandler(this.mCognitive_Click);
             // 
+            // mCapture
+            // 
+            this.mCapture.Name = "mCapture";
+            this.mCapture.Size = new System.Drawing.Size(269, 38);
+            this.mCapture.Text = "照片上傳";
+            this.mCapture.Click += new System.EventHandler(this.mCapture_Click);
+            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 404);
+            this.ClientSize = new System.Drawing.Size(1229, 808);
             this.Controls.Add(this.mMenu);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mMenu;
-            this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "frmMain";
             this.Text = "FaceAccessController";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -125,6 +134,7 @@
         private System.Windows.Forms.ToolStripMenuItem mCognitive;
         private System.Windows.Forms.ToolStripMenuItem mWebCam;
         private System.Windows.Forms.ToolStripMenuItem mExit;
+        private System.Windows.Forms.ToolStripMenuItem mCapture;
     }
 }
 

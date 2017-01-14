@@ -75,12 +75,19 @@
     <Compile Include="Base\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClassLibrary\CognitiveUtility.cs" />
     <Compile Include="ClassLibrary\WebCam.cs" />
     <Compile Include="Forms\frmCam.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmCam.Designer.cs">
       <DependentUpon>frmCam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCapture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCapture.Designer.cs">
+      <DependentUpon>frmCapture.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmCognitive.cs">
       <SubType>Form</SubType>
@@ -114,6 +121,9 @@
     </Content>
     <EmbeddedResource Include="Forms\frmCam.resx">
       <DependentUpon>frmCam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCapture.resx">
+      <DependentUpon>frmCapture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCognitive.resx">
       <DependentUpon>frmCognitive.cs</DependentUpon>

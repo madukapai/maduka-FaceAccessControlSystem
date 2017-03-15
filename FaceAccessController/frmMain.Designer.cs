@@ -30,12 +30,14 @@
         {
             this.mMenu = new System.Windows.Forms.MenuStrip();
             this.mFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCapture = new System.Windows.Forms.ToolStripMenuItem();
             this.mWebCam = new System.Windows.Forms.ToolStripMenuItem();
             this.mExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mSetup = new System.Windows.Forms.ToolStripMenuItem();
             this.mPeopleControl = new System.Windows.Forms.ToolStripMenuItem();
             this.mCognitive = new System.Windows.Forms.ToolStripMenuItem();
-            this.mCapture = new System.Windows.Forms.ToolStripMenuItem();
+            this.demoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDetect = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,12 +45,13 @@
             // 
             this.mMenu.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.mMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.demoToolStripMenuItem,
             this.mFile,
             this.mSetup});
             this.mMenu.Location = new System.Drawing.Point(0, 0);
             this.mMenu.Name = "mMenu";
-            this.mMenu.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.mMenu.Size = new System.Drawing.Size(1229, 42);
+            this.mMenu.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
+            this.mMenu.Size = new System.Drawing.Size(1513, 24);
             this.mMenu.TabIndex = 1;
             this.mMenu.Text = "menuStrip1";
             // 
@@ -59,20 +62,27 @@
             this.mWebCam,
             this.mExit});
             this.mFile.Name = "mFile";
-            this.mFile.Size = new System.Drawing.Size(73, 38);
+            this.mFile.Size = new System.Drawing.Size(43, 20);
             this.mFile.Text = "檔案";
+            // 
+            // mCapture
+            // 
+            this.mCapture.Name = "mCapture";
+            this.mCapture.Size = new System.Drawing.Size(152, 22);
+            this.mCapture.Text = "照片上傳";
+            this.mCapture.Click += new System.EventHandler(this.mCapture_Click);
             // 
             // mWebCam
             // 
             this.mWebCam.Name = "mWebCam";
-            this.mWebCam.Size = new System.Drawing.Size(269, 38);
+            this.mWebCam.Size = new System.Drawing.Size(152, 22);
             this.mWebCam.Text = "影像偵測";
             this.mWebCam.Click += new System.EventHandler(this.mWebCam_Click);
             // 
             // mExit
             // 
             this.mExit.Name = "mExit";
-            this.mExit.Size = new System.Drawing.Size(269, 38);
+            this.mExit.Size = new System.Drawing.Size(152, 22);
             this.mExit.Text = "離開";
             this.mExit.Click += new System.EventHandler(this.mExit_Click);
             // 
@@ -82,39 +92,47 @@
             this.mPeopleControl,
             this.mCognitive});
             this.mSetup.Name = "mSetup";
-            this.mSetup.Size = new System.Drawing.Size(73, 38);
+            this.mSetup.Size = new System.Drawing.Size(43, 20);
             this.mSetup.Text = "設定";
             // 
             // mPeopleControl
             // 
             this.mPeopleControl.Name = "mPeopleControl";
-            this.mPeopleControl.Size = new System.Drawing.Size(333, 38);
+            this.mPeopleControl.Size = new System.Drawing.Size(185, 22);
             this.mPeopleControl.Text = "群組與人員清單";
             this.mPeopleControl.Click += new System.EventHandler(this.mPeopleControl_Click);
             // 
             // mCognitive
             // 
             this.mCognitive.Name = "mCognitive";
-            this.mCognitive.Size = new System.Drawing.Size(333, 38);
+            this.mCognitive.Size = new System.Drawing.Size(185, 22);
             this.mCognitive.Text = "Microsoft Cognitive";
             this.mCognitive.Click += new System.EventHandler(this.mCognitive_Click);
             // 
-            // mCapture
+            // demoToolStripMenuItem
             // 
-            this.mCapture.Name = "mCapture";
-            this.mCapture.Size = new System.Drawing.Size(269, 38);
-            this.mCapture.Text = "照片上傳";
-            this.mCapture.Click += new System.EventHandler(this.mCapture_Click);
+            this.demoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mDetect});
+            this.demoToolStripMenuItem.Name = "demoToolStripMenuItem";
+            this.demoToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.demoToolStripMenuItem.Text = "Demo";
+            // 
+            // mDetect
+            // 
+            this.mDetect.Name = "mDetect";
+            this.mDetect.Size = new System.Drawing.Size(152, 22);
+            this.mDetect.Text = "Detect";
+            this.mDetect.Click += new System.EventHandler(this.mDetect_Click);
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1229, 808);
+            this.ClientSize = new System.Drawing.Size(1513, 1010);
             this.Controls.Add(this.mMenu);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mMenu;
-            this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
             this.Name = "frmMain";
             this.Text = "FaceAccessController";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -135,6 +153,8 @@
         private System.Windows.Forms.ToolStripMenuItem mWebCam;
         private System.Windows.Forms.ToolStripMenuItem mExit;
         private System.Windows.Forms.ToolStripMenuItem mCapture;
+        private System.Windows.Forms.ToolStripMenuItem demoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mDetect;
     }
 }
 

@@ -95,6 +95,12 @@
     <Compile Include="Forms\frmCognitive.Designer.cs">
       <DependentUpon>frmCognitive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmDetect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDetect.Designer.cs">
+      <DependentUpon>frmDetect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmFaces.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCognitive.resx">
       <DependentUpon>frmCognitive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDetect.resx">
+      <DependentUpon>frmDetect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmFaces.resx">
       <DependentUpon>frmFaces.cs</DependentUpon>

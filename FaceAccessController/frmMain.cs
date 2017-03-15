@@ -91,5 +91,18 @@ namespace FaceAccessController
             objCapture.Show();
             objCapture.WindowState = FormWindowState.Maximized;
         }
+
+        /// <summary>
+        /// Demo Detect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mDetect_Click(object sender, EventArgs e)
+        {
+            Forms.frmDetect objDetect = new Forms.frmDetect();
+            objDetect.MdiParent = this;
+            objDetect.Show();
+            objDetect.WindowState = FormWindowState.Maximized;
+        }
     }
 }

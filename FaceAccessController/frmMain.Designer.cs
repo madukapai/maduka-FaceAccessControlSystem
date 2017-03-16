@@ -39,6 +39,7 @@
             this.mPeopleControl = new System.Windows.Forms.ToolStripMenuItem();
             this.mCognitive = new System.Windows.Forms.ToolStripMenuItem();
             this.mVerify = new System.Windows.Forms.ToolStripMenuItem();
+            this.mIdentify = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,8 @@
             // 
             this.demoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mDetect,
-            this.mVerify});
+            this.mVerify,
+            this.mIdentify});
             this.demoToolStripMenuItem.Name = "demoToolStripMenuItem";
             this.demoToolStripMenuItem.Size = new System.Drawing.Size(54, 22);
             this.demoToolStripMenuItem.Text = "Demo";
@@ -133,6 +135,13 @@
             this.mVerify.Text = "Verify";
             this.mVerify.Click += new System.EventHandler(this.mVerify_Click);
             // 
+            // mIdentify
+            // 
+            this.mIdentify.Name = "mIdentify";
+            this.mIdentify.Size = new System.Drawing.Size(152, 22);
+            this.mIdentify.Text = "Identify";
+            this.mIdentify.Click += new System.EventHandler(this.mIdentify_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -165,6 +174,7 @@
         private System.Windows.Forms.ToolStripMenuItem demoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDetect;
         private System.Windows.Forms.ToolStripMenuItem mVerify;
+        private System.Windows.Forms.ToolStripMenuItem mIdentify;
     }
 }
 

@@ -79,6 +79,15 @@ namespace FaceAccessController.Forms
         /// <returns></returns>
         private async Task DetectFace(string strFilePath, ImageSource objSource)
         {
+            // 指定臉部分析的結果
+            List<FaceAttributeType> faceAttrs = new List<FaceAttributeType>()
+            {
+                FaceAttributeType.Age,
+                FaceAttributeType.FacialHair,
+                FaceAttributeType.Glasses,
+                FaceAttributeType.Smile,
+            };
+
             if (objSource == ImageSource.File)
             {
                 using (Stream imageFileStream = File.OpenRead(strFilePath))
@@ -125,6 +134,7 @@ namespace FaceAccessController.Forms
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", base.SetupConfig.FaceApiKey);
             var uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true";
+            uri += "&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion";
 
             HttpResponseMessage response;
 

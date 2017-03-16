@@ -45,78 +45,59 @@ namespace FaceAccessController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mCognitive_Click(object sender, EventArgs e)
-        {
-            Forms.frmCognitive objCognitive = new Forms.frmCognitive();
-            objCognitive.MdiParent = this;
-            objCognitive.Show();
-            objCognitive.WindowState = FormWindowState.Maximized;
-        }
+        private void mCognitive_Click(object sender, EventArgs e) => OpenForm(new Forms.frmCognitive());
 
         /// <summary>
         /// 開啟WebCam的畫面
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mWebCam_Click(object sender, EventArgs e)
-        {
-            Forms.frmCam objCam = new Forms.frmCam();
-            objCam.MdiParent = this;
-            objCam.Show();
-            objCam.WindowState = FormWindowState.Maximized;
-        }
+        private void mWebCam_Click(object sender, EventArgs e) => OpenForm(new Forms.frmCam());
 
         /// <summary>
         /// 點選設定人員與群組的動作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mPeopleControl_Click(object sender, EventArgs e)
-        {
-            Forms.frmUsers objUsers = new Forms.frmUsers();
-            objUsers.MdiParent = this;
-            objUsers.Show();
-            objUsers.WindowState = FormWindowState.Maximized;
-        }
+        private void mPeopleControl_Click(object sender, EventArgs e) => OpenForm(new Forms.frmUsers());
 
         /// <summary>
         /// 照片上傳的動作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mCapture_Click(object sender, EventArgs e)
-        {
-            Forms.frmCapture objCapture = new Forms.frmCapture();
-            objCapture.MdiParent = this;
-            objCapture.Show();
-            objCapture.WindowState = FormWindowState.Maximized;
-        }
+        private void mCapture_Click(object sender, EventArgs e) => OpenForm(new Forms.frmCapture());
 
         /// <summary>
         /// Demo Detect
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mDetect_Click(object sender, EventArgs e)
-        {
-            Forms.frmDetect objDetect = new Forms.frmDetect();
-            objDetect.MdiParent = this;
-            objDetect.Show();
-            objDetect.WindowState = FormWindowState.Maximized;
-        }
+        private void mDetect_Click(object sender, EventArgs e) => OpenForm(new Forms.frmDetect());
 
         /// <summary>
         /// Demo Verify
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mVerify_Click(object sender, EventArgs e)
-        {
-            Forms.frmVerify objVerift = new Forms.frmVerify();
-            objVerift.MdiParent = this;
-            objVerift.Show();
-            objVerift.WindowState = FormWindowState.Maximized;
+        private void mVerify_Click(object sender, EventArgs e)=>OpenForm(new Forms.frmVerify());
 
+        /// <summary>
+        /// Demo Identify
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mIdentify_Click(object sender, EventArgs e) => OpenForm(new Forms.frmIdentify());
+
+        /// <summary>
+        /// 開啟指定的表單物件
+        /// </summary>
+        /// <param name="objFrm"></param>
+        private void OpenForm(Form objFrm)
+        {
+            objFrm.MdiParent = this;
+            objFrm.Show();
+            objFrm.WindowState = FormWindowState.Maximized;
         }
     }
 }

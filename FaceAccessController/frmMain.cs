@@ -104,5 +104,19 @@ namespace FaceAccessController
             objDetect.Show();
             objDetect.WindowState = FormWindowState.Maximized;
         }
+
+        /// <summary>
+        /// Demo Verify
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mVerify_Click(object sender, EventArgs e)
+        {
+            Forms.frmVerify objVerift = new Forms.frmVerify();
+            objVerift.MdiParent = this;
+            objVerift.Show();
+            objVerift.WindowState = FormWindowState.Maximized;
+
+        }
     }
 }

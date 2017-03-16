@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.mMenu = new System.Windows.Forms.MenuStrip();
+            this.demoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDetect = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mCapture = new System.Windows.Forms.ToolStripMenuItem();
             this.mWebCam = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,8 +38,7 @@
             this.mSetup = new System.Windows.Forms.ToolStripMenuItem();
             this.mPeopleControl = new System.Windows.Forms.ToolStripMenuItem();
             this.mCognitive = new System.Windows.Forms.ToolStripMenuItem();
-            this.demoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mDetect = new System.Windows.Forms.ToolStripMenuItem();
+            this.mVerify = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,10 +51,26 @@
             this.mSetup});
             this.mMenu.Location = new System.Drawing.Point(0, 0);
             this.mMenu.Name = "mMenu";
-            this.mMenu.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
-            this.mMenu.Size = new System.Drawing.Size(1513, 24);
+            this.mMenu.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
+            this.mMenu.Size = new System.Drawing.Size(567, 24);
             this.mMenu.TabIndex = 1;
             this.mMenu.Text = "menuStrip1";
+            // 
+            // demoToolStripMenuItem
+            // 
+            this.demoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mDetect,
+            this.mVerify});
+            this.demoToolStripMenuItem.Name = "demoToolStripMenuItem";
+            this.demoToolStripMenuItem.Size = new System.Drawing.Size(54, 22);
+            this.demoToolStripMenuItem.Text = "Demo";
+            // 
+            // mDetect
+            // 
+            this.mDetect.Name = "mDetect";
+            this.mDetect.Size = new System.Drawing.Size(152, 22);
+            this.mDetect.Text = "Detect";
+            this.mDetect.Click += new System.EventHandler(this.mDetect_Click);
             // 
             // mFile
             // 
@@ -62,27 +79,27 @@
             this.mWebCam,
             this.mExit});
             this.mFile.Name = "mFile";
-            this.mFile.Size = new System.Drawing.Size(43, 20);
+            this.mFile.Size = new System.Drawing.Size(43, 22);
             this.mFile.Text = "檔案";
             // 
             // mCapture
             // 
             this.mCapture.Name = "mCapture";
-            this.mCapture.Size = new System.Drawing.Size(152, 22);
+            this.mCapture.Size = new System.Drawing.Size(122, 22);
             this.mCapture.Text = "照片上傳";
             this.mCapture.Click += new System.EventHandler(this.mCapture_Click);
             // 
             // mWebCam
             // 
             this.mWebCam.Name = "mWebCam";
-            this.mWebCam.Size = new System.Drawing.Size(152, 22);
+            this.mWebCam.Size = new System.Drawing.Size(122, 22);
             this.mWebCam.Text = "影像偵測";
             this.mWebCam.Click += new System.EventHandler(this.mWebCam_Click);
             // 
             // mExit
             // 
             this.mExit.Name = "mExit";
-            this.mExit.Size = new System.Drawing.Size(152, 22);
+            this.mExit.Size = new System.Drawing.Size(122, 22);
             this.mExit.Text = "離開";
             this.mExit.Click += new System.EventHandler(this.mExit_Click);
             // 
@@ -92,7 +109,7 @@
             this.mPeopleControl,
             this.mCognitive});
             this.mSetup.Name = "mSetup";
-            this.mSetup.Size = new System.Drawing.Size(43, 20);
+            this.mSetup.Size = new System.Drawing.Size(43, 22);
             this.mSetup.Text = "設定";
             // 
             // mPeopleControl
@@ -109,30 +126,22 @@
             this.mCognitive.Text = "Microsoft Cognitive";
             this.mCognitive.Click += new System.EventHandler(this.mCognitive_Click);
             // 
-            // demoToolStripMenuItem
+            // mVerify
             // 
-            this.demoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mDetect});
-            this.demoToolStripMenuItem.Name = "demoToolStripMenuItem";
-            this.demoToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.demoToolStripMenuItem.Text = "Demo";
-            // 
-            // mDetect
-            // 
-            this.mDetect.Name = "mDetect";
-            this.mDetect.Size = new System.Drawing.Size(152, 22);
-            this.mDetect.Text = "Detect";
-            this.mDetect.Click += new System.EventHandler(this.mDetect_Click);
+            this.mVerify.Name = "mVerify";
+            this.mVerify.Size = new System.Drawing.Size(152, 22);
+            this.mVerify.Text = "Verify";
+            this.mVerify.Click += new System.EventHandler(this.mVerify_Click);
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1513, 1010);
+            this.ClientSize = new System.Drawing.Size(567, 404);
             this.Controls.Add(this.mMenu);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mMenu;
-            this.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
+            this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.Name = "frmMain";
             this.Text = "FaceAccessController";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -155,6 +164,7 @@
         private System.Windows.Forms.ToolStripMenuItem mCapture;
         private System.Windows.Forms.ToolStripMenuItem demoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDetect;
+        private System.Windows.Forms.ToolStripMenuItem mVerify;
     }
 }
 

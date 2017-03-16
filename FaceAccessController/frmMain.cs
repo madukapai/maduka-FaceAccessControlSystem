@@ -90,6 +90,13 @@ namespace FaceAccessController
         private void mIdentify_Click(object sender, EventArgs e) => OpenForm(new Forms.frmIdentify());
 
         /// <summary>
+        /// Demo Emotion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mEmotion_Click(object sender, EventArgs e) => OpenForm(new Forms.frmEmotion());
+
+        /// <summary>
         /// 開啟指定的表單物件
         /// </summary>
         /// <param name="objFrm"></param>

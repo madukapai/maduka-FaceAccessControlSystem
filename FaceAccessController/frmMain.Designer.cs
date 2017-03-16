@@ -40,6 +40,11 @@
             this.mCognitive = new System.Windows.Forms.ToolStripMenuItem();
             this.mVerify = new System.Windows.Forms.ToolStripMenuItem();
             this.mIdentify = new System.Windows.Forms.ToolStripMenuItem();
+            this.faceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editFaceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findSimilarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mEmotion = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +67,10 @@
             this.demoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mDetect,
             this.mVerify,
-            this.mIdentify});
+            this.mIdentify,
+            this.faceListToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.mEmotion});
             this.demoToolStripMenuItem.Name = "demoToolStripMenuItem";
             this.demoToolStripMenuItem.Size = new System.Drawing.Size(54, 22);
             this.demoToolStripMenuItem.Text = "Demo";
@@ -87,21 +95,21 @@
             // mCapture
             // 
             this.mCapture.Name = "mCapture";
-            this.mCapture.Size = new System.Drawing.Size(122, 22);
+            this.mCapture.Size = new System.Drawing.Size(152, 22);
             this.mCapture.Text = "照片上傳";
             this.mCapture.Click += new System.EventHandler(this.mCapture_Click);
             // 
             // mWebCam
             // 
             this.mWebCam.Name = "mWebCam";
-            this.mWebCam.Size = new System.Drawing.Size(122, 22);
+            this.mWebCam.Size = new System.Drawing.Size(152, 22);
             this.mWebCam.Text = "影像偵測";
             this.mWebCam.Click += new System.EventHandler(this.mWebCam_Click);
             // 
             // mExit
             // 
             this.mExit.Name = "mExit";
-            this.mExit.Size = new System.Drawing.Size(122, 22);
+            this.mExit.Size = new System.Drawing.Size(152, 22);
             this.mExit.Text = "離開";
             this.mExit.Click += new System.EventHandler(this.mExit_Click);
             // 
@@ -142,6 +150,39 @@
             this.mIdentify.Text = "Identify";
             this.mIdentify.Click += new System.EventHandler(this.mIdentify_Click);
             // 
+            // faceListToolStripMenuItem
+            // 
+            this.faceListToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editFaceListToolStripMenuItem,
+            this.findSimilarToolStripMenuItem});
+            this.faceListToolStripMenuItem.Name = "faceListToolStripMenuItem";
+            this.faceListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.faceListToolStripMenuItem.Text = "Face List";
+            // 
+            // editFaceListToolStripMenuItem
+            // 
+            this.editFaceListToolStripMenuItem.Name = "editFaceListToolStripMenuItem";
+            this.editFaceListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editFaceListToolStripMenuItem.Text = "Edit Face List";
+            // 
+            // findSimilarToolStripMenuItem
+            // 
+            this.findSimilarToolStripMenuItem.Name = "findSimilarToolStripMenuItem";
+            this.findSimilarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.findSimilarToolStripMenuItem.Text = "Find Similar";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // mEmotion
+            // 
+            this.mEmotion.Name = "mEmotion";
+            this.mEmotion.Size = new System.Drawing.Size(152, 22);
+            this.mEmotion.Text = "Emotion";
+            this.mEmotion.Click += new System.EventHandler(this.mEmotion_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -175,6 +216,11 @@
         private System.Windows.Forms.ToolStripMenuItem mDetect;
         private System.Windows.Forms.ToolStripMenuItem mVerify;
         private System.Windows.Forms.ToolStripMenuItem mIdentify;
+        private System.Windows.Forms.ToolStripMenuItem faceListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editFaceListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findSimilarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mEmotion;
     }
 }
 

@@ -20,6 +20,7 @@ namespace FaceAccessController.Forms
     {
         FaceServiceClient face;
         IDictionary DicPerson;
+        List<Rectangle> rect = new List<Rectangle>();
 
         public frmIdentify()
         {
@@ -56,7 +57,10 @@ namespace FaceAccessController.Forms
         private void fileDialog_FileOk(object sender, CancelEventArgs e)
         {
             txtFileName.Text = fileDialog.FileName;
-            picImage.Image = Image.FromFile(txtFileName.Text);
+            plTag.BackgroundImage = Image.FromFile(txtFileName.Text);
+            plTag.BackgroundImageLayout = ImageLayout.Stretch;
+            rect.Clear();
+            plTag.Invalidate();
         }
 
         /// <summary>
@@ -90,6 +94,8 @@ namespace FaceAccessController.Forms
 
         private async Task DetectFace(Face[] faces)
         {
+            List<Face> objAddPanelFaces = new List<Face>();
+
             // 將照片中的臉，與指定的PersonGroup進行比對
             if (faces != null)
             {
@@ -109,10 +115,56 @@ namespace FaceAccessController.Forms
                             string strPersonId = result[i].Candidates[p].PersonId.ToString();
                             string strPersonName = (DicPerson.Contains(strPersonId)) ? DicPerson[strPersonId].ToString() : "";
                             strPersonNameLabel += strPersonName + ",";
+
+                            objAddPanelFaces.Add(faces[i]);
                         }
                     }
                     txtPerson.Text = strPersonNameLabel;
                 }
+            }
+
+            // 加入畫出內容的方框
+            this.RenderRectangle(objAddPanelFaces.ToArray());
+        }
+
+        private void RenderRectangle(Face[] results)
+        {
+            rect.Clear();
+
+            float floPhysicalHeight = plTag.BackgroundImage.PhysicalDimension.Height;
+            float floPhysicalWidth = plTag.BackgroundImage.PhysicalDimension.Width;
+
+            // 取得事件的x,y以及height, width
+            int intVedioWidth = plTag.Width;
+            int intVedioHeight = plTag.Height;
+
+            for (int i = 0; i < results.Length; i++)
+            {
+
+                // 找出方框出現的X與Y
+                int intX = (int)(intVedioWidth * results[i].FaceRectangle.Left / floPhysicalWidth);
+                int intY = (int)(intVedioHeight * results[i].FaceRectangle.Top / floPhysicalHeight);
+                //intX = axWindowsMediaPlayer1.Left + intX;
+                //intY = axWindowsMediaPlayer1.Top + intY;
+
+                // 找出方框的高度與寬度
+                int intHeight = (int)(intVedioHeight * results[i].FaceRectangle.Height / floPhysicalHeight);
+                int intWidth = (int)(intVedioWidth * results[i].FaceRectangle.Width / floPhysicalWidth);
+
+                rect.Add(new Rectangle(intX, intY, intHeight, intWidth));
+            }
+
+            plTag.BackgroundImage = Image.FromFile(txtFileName.Text);
+            plTag.BackgroundImageLayout = ImageLayout.Stretch;
+            plTag.Invalidate();
+        }
+
+        private void plTag_Paint(object sender, PaintEventArgs e)
+        {
+            using (Pen pen = new Pen(Color.Green, 1))
+            {
+                for (int i = 0; i < rect.Count; i++)
+                    e.Graphics.DrawRectangle(pen, rect[i]);
             }
         }
     }

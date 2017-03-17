@@ -37,37 +37,38 @@
             // 
             // txtResult
             // 
-            this.txtResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResult.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtResult.Location = new System.Drawing.Point(303, 10);
+            this.txtResult.Location = new System.Drawing.Point(304, 10);
             this.txtResult.Margin = new System.Windows.Forms.Padding(1);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResult.Size = new System.Drawing.Size(404, 302);
+            this.txtResult.Size = new System.Drawing.Size(404, 371);
             this.txtResult.TabIndex = 8;
             // 
             // imgFace
             // 
-            this.imgFace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.imgFace.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imgFace.Location = new System.Drawing.Point(10, 10);
             this.imgFace.Margin = new System.Windows.Forms.Padding(1);
             this.imgFace.Name = "imgFace";
-            this.imgFace.Size = new System.Drawing.Size(291, 267);
+            this.imgFace.Size = new System.Drawing.Size(292, 336);
             this.imgFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgFace.TabIndex = 7;
             this.imgFace.TabStop = false;
             // 
             // btnOpenPicture
             // 
-            this.btnOpenPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOpenPicture.Location = new System.Drawing.Point(10, 279);
+            this.btnOpenPicture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenPicture.Location = new System.Drawing.Point(10, 348);
             this.btnOpenPicture.Margin = new System.Windows.Forms.Padding(1);
             this.btnOpenPicture.Name = "btnOpenPicture";
-            this.btnOpenPicture.Size = new System.Drawing.Size(291, 33);
+            this.btnOpenPicture.Size = new System.Drawing.Size(292, 33);
             this.btnOpenPicture.TabIndex = 6;
             this.btnOpenPicture.Text = "Open Picture";
             this.btnOpenPicture.UseVisualStyleBackColor = true;
@@ -82,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 322);
+            this.ClientSize = new System.Drawing.Size(718, 391);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.imgFace);
             this.Controls.Add(this.btnOpenPicture);

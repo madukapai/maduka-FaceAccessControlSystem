@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIdentify));
-            this.picImage = new System.Windows.Forms.PictureBox();
             this.cbxPersonGroup = new System.Windows.Forms.ComboBox();
             this.lblPersonGroup = new System.Windows.Forms.Label();
             this.btnUpload = new System.Windows.Forms.Button();
@@ -39,21 +38,8 @@
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.txtPerson = new System.Windows.Forms.TextBox();
             this.txtResult = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
+            this.plTag = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // picImage
-            // 
-            this.picImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picImage.Location = new System.Drawing.Point(6, 58);
-            this.picImage.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(524, 235);
-            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picImage.TabIndex = 15;
-            this.picImage.TabStop = false;
             // 
             // cbxPersonGroup
             // 
@@ -80,7 +66,7 @@
             // btnUpload
             // 
             this.btnUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpload.Location = new System.Drawing.Point(487, 28);
+            this.btnUpload.Location = new System.Drawing.Point(621, 28);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(44, 19);
@@ -93,7 +79,7 @@
             // 
             this.btnOpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenFile.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenFile.Image")));
-            this.btnOpenFile.Location = new System.Drawing.Point(454, 28);
+            this.btnOpenFile.Location = new System.Drawing.Point(588, 28);
             this.btnOpenFile.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(30, 19);
@@ -108,7 +94,7 @@
             this.txtFileName.Location = new System.Drawing.Point(60, 28);
             this.txtFileName.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(392, 22);
+            this.txtFileName.Size = new System.Drawing.Size(526, 22);
             this.txtFileName.TabIndex = 10;
             // 
             // lblPicture
@@ -129,30 +115,41 @@
             // 
             this.txtPerson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPerson.Location = new System.Drawing.Point(6, 297);
+            this.txtPerson.Location = new System.Drawing.Point(7, 358);
             this.txtPerson.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.txtPerson.Name = "txtPerson";
-            this.txtPerson.Size = new System.Drawing.Size(525, 22);
+            this.txtPerson.Size = new System.Drawing.Size(348, 22);
             this.txtPerson.TabIndex = 17;
             // 
             // txtResult
             // 
-            this.txtResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResult.Location = new System.Drawing.Point(7, 324);
+            this.txtResult.Location = new System.Drawing.Point(358, 58);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResult.Size = new System.Drawing.Size(523, 198);
+            this.txtResult.Size = new System.Drawing.Size(306, 324);
             this.txtResult.TabIndex = 18;
+            // 
+            // plTag
+            // 
+            this.plTag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.plTag.BackColor = System.Drawing.Color.Transparent;
+            this.plTag.Location = new System.Drawing.Point(6, 58);
+            this.plTag.Name = "plTag";
+            this.plTag.Size = new System.Drawing.Size(348, 296);
+            this.plTag.TabIndex = 19;
+            this.plTag.Paint += new System.Windows.Forms.PaintEventHandler(this.plTag_Paint);
             // 
             // frmIdentify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 534);
+            this.ClientSize = new System.Drawing.Size(676, 391);
             this.Controls.Add(this.txtResult);
-            this.Controls.Add(this.picImage);
             this.Controls.Add(this.cbxPersonGroup);
             this.Controls.Add(this.lblPersonGroup);
             this.Controls.Add(this.btnUpload);
@@ -160,17 +157,16 @@
             this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.lblPicture);
             this.Controls.Add(this.txtPerson);
+            this.Controls.Add(this.plTag);
             this.Name = "frmIdentify";
             this.Text = "frmIdentify";
             this.Load += new System.EventHandler(this.frmIdentify_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox picImage;
         private System.Windows.Forms.ComboBox cbxPersonGroup;
         private System.Windows.Forms.Label lblPersonGroup;
         private System.Windows.Forms.Button btnUpload;
@@ -180,5 +176,6 @@
         private System.Windows.Forms.OpenFileDialog fileDialog;
         private System.Windows.Forms.TextBox txtPerson;
         private System.Windows.Forms.TextBox txtResult;
+        private System.Windows.Forms.Panel plTag;
     }
 }

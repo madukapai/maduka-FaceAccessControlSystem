@@ -45,6 +45,8 @@
             this.findSimilarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mEmotion = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mComputerVision = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +72,9 @@
             this.mIdentify,
             this.faceListToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.mEmotion});
+            this.mEmotion,
+            this.toolStripMenuItem2,
+            this.mComputerVision});
             this.demoToolStripMenuItem.Name = "demoToolStripMenuItem";
             this.demoToolStripMenuItem.Size = new System.Drawing.Size(54, 22);
             this.demoToolStripMenuItem.Text = "Demo";
@@ -78,7 +82,7 @@
             // mDetect
             // 
             this.mDetect.Name = "mDetect";
-            this.mDetect.Size = new System.Drawing.Size(152, 22);
+            this.mDetect.Size = new System.Drawing.Size(168, 22);
             this.mDetect.Text = "Detect";
             this.mDetect.Click += new System.EventHandler(this.mDetect_Click);
             // 
@@ -139,14 +143,14 @@
             // mVerify
             // 
             this.mVerify.Name = "mVerify";
-            this.mVerify.Size = new System.Drawing.Size(152, 22);
+            this.mVerify.Size = new System.Drawing.Size(168, 22);
             this.mVerify.Text = "Verify";
             this.mVerify.Click += new System.EventHandler(this.mVerify_Click);
             // 
             // mIdentify
             // 
             this.mIdentify.Name = "mIdentify";
-            this.mIdentify.Size = new System.Drawing.Size(152, 22);
+            this.mIdentify.Size = new System.Drawing.Size(168, 22);
             this.mIdentify.Text = "Identify";
             this.mIdentify.Click += new System.EventHandler(this.mIdentify_Click);
             // 
@@ -156,7 +160,7 @@
             this.editFaceListToolStripMenuItem,
             this.findSimilarToolStripMenuItem});
             this.faceListToolStripMenuItem.Name = "faceListToolStripMenuItem";
-            this.faceListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.faceListToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.faceListToolStripMenuItem.Text = "Face List";
             // 
             // editFaceListToolStripMenuItem
@@ -174,14 +178,26 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(165, 6);
             // 
             // mEmotion
             // 
             this.mEmotion.Name = "mEmotion";
-            this.mEmotion.Size = new System.Drawing.Size(152, 22);
+            this.mEmotion.Size = new System.Drawing.Size(168, 22);
             this.mEmotion.Text = "Emotion";
             this.mEmotion.Click += new System.EventHandler(this.mEmotion_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(165, 6);
+            // 
+            // mComputerVision
+            // 
+            this.mComputerVision.Name = "mComputerVision";
+            this.mComputerVision.Size = new System.Drawing.Size(168, 22);
+            this.mComputerVision.Text = "Computer Vision";
+            this.mComputerVision.Click += new System.EventHandler(this.mComputerVision_Click);
             // 
             // frmMain
             // 
@@ -221,6 +237,8 @@
         private System.Windows.Forms.ToolStripMenuItem findSimilarToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mEmotion;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mComputerVision;
     }
 }
 

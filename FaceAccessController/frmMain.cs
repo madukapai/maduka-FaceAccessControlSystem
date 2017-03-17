@@ -35,10 +35,7 @@ namespace FaceAccessController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void mExit_Click(object sender, EventArgs e) => Application.Exit();
 
         /// <summary>
         /// 設定Microsoft Cognitive的動作
@@ -97,6 +94,13 @@ namespace FaceAccessController
         private void mEmotion_Click(object sender, EventArgs e) => OpenForm(new Forms.frmEmotion());
 
         /// <summary>
+        /// Demo Computer Vision
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mComputerVision_Click(object sender, EventArgs e) => OpenForm(new Forms.frmComputerVision());
+
+        /// <summary>
         /// 開啟指定的表單物件
         /// </summary>
         /// <param name="objFrm"></param>
@@ -106,5 +110,6 @@ namespace FaceAccessController
             objFrm.Show();
             objFrm.WindowState = FormWindowState.Maximized;
         }
+
     }
 }

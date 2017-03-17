@@ -36,12 +36,14 @@
             this.lblEmotionKey = new System.Windows.Forms.Label();
             this.txtInterval = new System.Windows.Forms.TextBox();
             this.lblInteval = new System.Windows.Forms.Label();
+            this.lblVisionApiKey = new System.Windows.Forms.Label();
+            this.txtVisionApiKey = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(403, 88);
+            this.btnCancel.Location = new System.Drawing.Point(403, 117);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(44, 19);
@@ -53,7 +55,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(356, 88);
+            this.btnSave.Location = new System.Drawing.Point(356, 117);
             this.btnSave.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(44, 19);
@@ -85,7 +87,7 @@
             // lblFaceApiKey
             // 
             this.lblFaceApiKey.AutoSize = true;
-            this.lblFaceApiKey.Location = new System.Drawing.Point(29, 35);
+            this.lblFaceApiKey.Location = new System.Drawing.Point(25, 35);
             this.lblFaceApiKey.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblFaceApiKey.Name = "lblFaceApiKey";
             this.lblFaceApiKey.Size = new System.Drawing.Size(69, 12);
@@ -95,7 +97,7 @@
             // lblEmotionKey
             // 
             this.lblEmotionKey.AutoSize = true;
-            this.lblEmotionKey.Location = new System.Drawing.Point(10, 9);
+            this.lblEmotionKey.Location = new System.Drawing.Point(6, 9);
             this.lblEmotionKey.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblEmotionKey.Name = "lblEmotionKey";
             this.lblEmotionKey.Size = new System.Drawing.Size(88, 12);
@@ -107,7 +109,7 @@
             // 
             this.txtInterval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInterval.Location = new System.Drawing.Point(100, 58);
+            this.txtInterval.Location = new System.Drawing.Point(100, 84);
             this.txtInterval.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.txtInterval.Name = "txtInterval";
             this.txtInterval.Size = new System.Drawing.Size(349, 22);
@@ -116,17 +118,38 @@
             // lblInteval
             // 
             this.lblInteval.AutoSize = true;
-            this.lblInteval.Location = new System.Drawing.Point(59, 61);
+            this.lblInteval.Location = new System.Drawing.Point(53, 87);
             this.lblInteval.Name = "lblInteval";
             this.lblInteval.Size = new System.Drawing.Size(41, 12);
             this.lblInteval.TabIndex = 6;
             this.lblInteval.Text = "Interval";
             // 
+            // lblVisionApiKey
+            // 
+            this.lblVisionApiKey.AutoSize = true;
+            this.lblVisionApiKey.Location = new System.Drawing.Point(16, 61);
+            this.lblVisionApiKey.Name = "lblVisionApiKey";
+            this.lblVisionApiKey.Size = new System.Drawing.Size(78, 12);
+            this.lblVisionApiKey.TabIndex = 7;
+            this.lblVisionApiKey.Text = "Vision API Key";
+            // 
+            // txtVisionApiKey
+            // 
+            this.txtVisionApiKey.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtVisionApiKey.Location = new System.Drawing.Point(100, 58);
+            this.txtVisionApiKey.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.txtVisionApiKey.Name = "txtVisionApiKey";
+            this.txtVisionApiKey.Size = new System.Drawing.Size(349, 22);
+            this.txtVisionApiKey.TabIndex = 8;
+            // 
             // frmCognitive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 114);
+            this.ClientSize = new System.Drawing.Size(452, 143);
+            this.Controls.Add(this.txtVisionApiKey);
+            this.Controls.Add(this.lblVisionApiKey);
             this.Controls.Add(this.lblInteval);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -156,5 +179,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtInterval;
         private System.Windows.Forms.Label lblInteval;
+        private System.Windows.Forms.Label lblVisionApiKey;
+        private System.Windows.Forms.TextBox txtVisionApiKey;
     }
 }

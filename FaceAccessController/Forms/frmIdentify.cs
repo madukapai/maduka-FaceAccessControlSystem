@@ -103,23 +103,30 @@ namespace FaceAccessController.Forms
                 if (faceGuids.Length > 0)
                 {
                     string strPersonGroup = ((Models.CognitiveModels.ListItem)cbxPersonGroup.SelectedItem).Value;
-                    IdentifyResult[] result = await face.IdentifyAsync(strPersonGroup, faceGuids);
-                    txtResult.Text = JsonConvert.SerializeObject(result);
-
-                    // 取得照片中的人臉
-                    string strPersonNameLabel = "";
-                    for (int i = 0; i < result.Length; i++)
+                    try
                     {
-                        for (int p = 0; p < result[i].Candidates.Length; p++)
-                        {
-                            string strPersonId = result[i].Candidates[p].PersonId.ToString();
-                            string strPersonName = (DicPerson.Contains(strPersonId)) ? DicPerson[strPersonId].ToString() : "";
-                            strPersonNameLabel += strPersonName + ",";
+                        IdentifyResult[] result = await face.IdentifyAsync(strPersonGroup, faceGuids);
+                        txtResult.Text = JsonConvert.SerializeObject(result);
 
-                            objAddPanelFaces.Add(faces[i]);
+                        // 取得照片中的人臉
+                        string strPersonNameLabel = "";
+                        for (int i = 0; i < result.Length; i++)
+                        {
+                            for (int p = 0; p < result[i].Candidates.Length; p++)
+                            {
+                                string strPersonId = result[i].Candidates[p].PersonId.ToString();
+                                string strPersonName = (DicPerson.Contains(strPersonId)) ? DicPerson[strPersonId].ToString() : "";
+                                strPersonNameLabel += strPersonName + ",";
+
+                                objAddPanelFaces.Add(faces[i]);
+                            }
                         }
+                        txtPerson.Text = strPersonNameLabel;
                     }
-                    txtPerson.Text = strPersonNameLabel;
+                    catch (Exception e)
+                    {
+                        string strErrMsg = e.Message;
+                    }
                 }
             }
 

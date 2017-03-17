@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.txtResult = new System.Windows.Forms.TextBox();
-            this.imgFace = new System.Windows.Forms.PictureBox();
             this.btnOpenPicture = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.imgFace)).BeginInit();
+            this.plTag = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtResult
@@ -47,19 +46,6 @@
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtResult.Size = new System.Drawing.Size(404, 379);
             this.txtResult.TabIndex = 5;
-            // 
-            // imgFace
-            // 
-            this.imgFace.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.imgFace.Location = new System.Drawing.Point(10, 10);
-            this.imgFace.Margin = new System.Windows.Forms.Padding(1);
-            this.imgFace.Name = "imgFace";
-            this.imgFace.Size = new System.Drawing.Size(313, 344);
-            this.imgFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgFace.TabIndex = 4;
-            this.imgFace.TabStop = false;
             // 
             // btnOpenPicture
             // 
@@ -79,17 +65,28 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // plTag
+            // 
+            this.plTag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.plTag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.plTag.Location = new System.Drawing.Point(12, 12);
+            this.plTag.Name = "plTag";
+            this.plTag.Size = new System.Drawing.Size(309, 340);
+            this.plTag.TabIndex = 6;
+            this.plTag.Paint += new System.Windows.Forms.PaintEventHandler(this.plTag_Paint);
+            // 
             // frmEmotion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 399);
+            this.Controls.Add(this.plTag);
             this.Controls.Add(this.txtResult);
-            this.Controls.Add(this.imgFace);
             this.Controls.Add(this.btnOpenPicture);
             this.Name = "frmEmotion";
             this.Text = "frmEmotion";
-            ((System.ComponentModel.ISupportInitialize)(this.imgFace)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,8 +95,8 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtResult;
-        private System.Windows.Forms.PictureBox imgFace;
         private System.Windows.Forms.Button btnOpenPicture;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Panel plTag;
     }
 }

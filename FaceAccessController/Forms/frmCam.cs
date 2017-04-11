@@ -21,6 +21,7 @@ namespace FaceAccessController.Forms
 {
     public partial class frmCam : Base.BaseForm
     {
+        List<Rectangle> rect = new List<Rectangle>();
         WebCam oWebCam;
         FaceServiceClient face;
         IDictionary DicPerson;
@@ -41,7 +42,7 @@ namespace FaceAccessController.Forms
             face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
             new CognitiveUtility().BindPersonGroup(cbxPersonGroup, face, "");
             oWebCam = new WebCam();
-            oWebCam.Container = picWebCam;
+            oWebCam.Container = picRender;
             tiCapture.Interval = base.SetupConfig.WebCamInterval;
         }
 
@@ -52,8 +53,8 @@ namespace FaceAccessController.Forms
         /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
-            oWebCam.Container.Height = picWebCam.Height;
-            oWebCam.Container.Width = picWebCam.Width;
+            oWebCam.Container.Height = picRender.Height;
+            oWebCam.Container.Width = picRender.Width;
             oWebCam.OpenConnection();
 
             tiCapture.Enabled = true;
@@ -88,11 +89,12 @@ namespace FaceAccessController.Forms
         private async void tiCapture_Tick(object sender, EventArgs e)
         {
             Image objImage = oWebCam.CaptureImage();
-            picRender.Image = objImage;
 
-            // 先取出照片中的人臉與其FaceId
             var ms = new MemoryStream();
             objImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            plCam.BackgroundImage = Bitmap.FromStream(ms);
+
+            // 先取出照片中的人臉與其FaceId
             Face[] faces = null;
             try
             {
@@ -100,6 +102,7 @@ namespace FaceAccessController.Forms
                 HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey);
                 string strContent = await response.Content.ReadAsStringAsync();
                 faces = JsonConvert.DeserializeObject<Face[]>(strContent);
+                RenderRectangle(faces);
             }
             catch (Exception ex)
             {
@@ -167,6 +170,47 @@ namespace FaceAccessController.Forms
 
             for (int i = 0; i < objPersons.Length; i++)
                 DicPerson.Add(objPersons[i].PersonId.ToString().Replace("{", "").Replace("}", ""), objPersons[i].Name);
+        }
+
+        private void RenderRectangle(Face[] results)
+        {
+            rect.Clear();
+
+            float floPhysicalHeight = plCam.BackgroundImage.PhysicalDimension.Height;
+            float floPhysicalWidth = plCam.BackgroundImage.PhysicalDimension.Width;
+
+            // 取得事件的x,y以及height, width
+            int intVedioWidth = plCam.Width;
+            int intVedioHeight = plCam.Height;
+
+            for (int i = 0; i < results.Length; i++)
+            {
+
+                // 找出方框出現的X與Y
+                int intX = (int)(intVedioWidth * results[i].FaceRectangle.Left / floPhysicalWidth);
+                int intY = (int)(intVedioHeight * results[i].FaceRectangle.Top / floPhysicalHeight);
+                //intX = axWindowsMediaPlayer1.Left + intX;
+                //intY = axWindowsMediaPlayer1.Top + intY;
+
+                // 找出方框的高度與寬度
+                int intHeight = (int)(intVedioHeight * results[i].FaceRectangle.Height / floPhysicalHeight);
+                int intWidth = (int)(intVedioWidth * results[i].FaceRectangle.Width / floPhysicalWidth);
+
+                rect.Add(new Rectangle(intX, intY, intHeight, intWidth));
+            }
+
+            //plTag.BackgroundImage = Image.FromFile(txtFileName.Text);
+            //plTag.BackgroundImageLayout = ImageLayout.Stretch;
+            plCam.Invalidate();
+        }
+
+        private void plTag_Paint(object sender, PaintEventArgs e)
+        {
+            using (Pen pen = new Pen(Color.Green, 1))
+            {
+                for (int i = 0; i < rect.Count; i++)
+                    e.Graphics.DrawRectangle(pen, rect[i]);
+            }
         }
     }
 }

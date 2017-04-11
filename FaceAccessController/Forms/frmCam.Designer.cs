@@ -36,12 +36,11 @@
             this.btnCapture = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.picWebCam = new System.Windows.Forms.PictureBox();
             this.plPersonName = new System.Windows.Forms.Panel();
             this.lblPersonName = new System.Windows.Forms.Label();
             this.tiPersonLabel = new System.Windows.Forms.Timer(this.components);
+            this.plCam = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).BeginInit();
             this.plPersonName.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,19 +118,6 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // picWebCam
-            // 
-            this.picWebCam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picWebCam.Location = new System.Drawing.Point(7, 11);
-            this.picWebCam.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.picWebCam.Name = "picWebCam";
-            this.picWebCam.Size = new System.Drawing.Size(640, 480);
-            this.picWebCam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picWebCam.TabIndex = 0;
-            this.picWebCam.TabStop = false;
-            // 
             // plPersonName
             // 
             this.plPersonName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -159,6 +145,18 @@
             this.tiPersonLabel.Interval = 3000;
             this.tiPersonLabel.Tick += new System.EventHandler(this.tiPersonLabel_Tick);
             // 
+            // plCam
+            // 
+            this.plCam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.plCam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.plCam.Location = new System.Drawing.Point(12, 8);
+            this.plCam.Name = "plCam";
+            this.plCam.Size = new System.Drawing.Size(633, 478);
+            this.plCam.TabIndex = 8;
+            this.plCam.Paint += new System.Windows.Forms.PaintEventHandler(this.plTag_Paint);
+            // 
             // frmCam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -171,21 +169,18 @@
             this.Controls.Add(this.btnCapture);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.picWebCam);
+            this.Controls.Add(this.plCam);
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.Name = "frmCam";
             this.Text = "frmCam";
             this.Load += new System.EventHandler(this.frmCam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).EndInit();
             this.plPersonName.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox picWebCam;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnCapture;
@@ -196,5 +191,6 @@
         private System.Windows.Forms.Panel plPersonName;
         private System.Windows.Forms.Label lblPersonName;
         private System.Windows.Forms.Timer tiPersonLabel;
+        private System.Windows.Forms.Panel plCam;
     }
 }

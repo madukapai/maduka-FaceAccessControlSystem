@@ -142,7 +142,6 @@
             this.plTag.Name = "plTag";
             this.plTag.Size = new System.Drawing.Size(348, 296);
             this.plTag.TabIndex = 19;
-            this.plTag.Paint += new System.Windows.Forms.PaintEventHandler(this.plTag_Paint);
             // 
             // frmIdentify
             // 

@@ -75,7 +75,6 @@
             this.plTag.Name = "plTag";
             this.plTag.Size = new System.Drawing.Size(309, 340);
             this.plTag.TabIndex = 6;
-            this.plTag.Paint += new System.Windows.Forms.PaintEventHandler(this.plTag_Paint);
             // 
             // frmEmotion
             // 

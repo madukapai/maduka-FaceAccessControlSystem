@@ -96,6 +96,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassLibrary\CognitiveUtility.cs" />
+    <Compile Include="ClassLibrary\FacePanelUtility.cs" />
     <Compile Include="ClassLibrary\WebCam.cs" />
     <Compile Include="Forms\frmCam.cs">
       <SubType>Form</SubType>

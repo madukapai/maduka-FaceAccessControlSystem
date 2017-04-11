@@ -21,10 +21,10 @@ namespace FaceAccessController.Forms
 {
     public partial class frmCam : Base.BaseForm
     {
-        List<Rectangle> rect = new List<Rectangle>();
         WebCam oWebCam;
         FaceServiceClient face;
         IDictionary DicPerson;
+        FacePanelUtility objPlUtil = new FacePanelUtility();
 
         public frmCam()
         {
@@ -44,6 +44,8 @@ namespace FaceAccessController.Forms
             oWebCam = new WebCam();
             oWebCam.Container = picRender;
             tiCapture.Interval = base.SetupConfig.WebCamInterval;
+            objPlUtil.TargetPanel = plCam;
+            plCam.Paint += objPlUtil.OnPaint;
         }
 
         /// <summary>
@@ -102,7 +104,7 @@ namespace FaceAccessController.Forms
                 HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey);
                 string strContent = await response.Content.ReadAsStringAsync();
                 faces = JsonConvert.DeserializeObject<Face[]>(strContent);
-                RenderRectangle(faces);
+                objPlUtil.RenderFaceRectangle(faces);
             }
             catch (Exception ex)
             {
@@ -170,47 +172,6 @@ namespace FaceAccessController.Forms
 
             for (int i = 0; i < objPersons.Length; i++)
                 DicPerson.Add(objPersons[i].PersonId.ToString().Replace("{", "").Replace("}", ""), objPersons[i].Name);
-        }
-
-        private void RenderRectangle(Face[] results)
-        {
-            rect.Clear();
-
-            float floPhysicalHeight = plCam.BackgroundImage.PhysicalDimension.Height;
-            float floPhysicalWidth = plCam.BackgroundImage.PhysicalDimension.Width;
-
-            // 取得事件的x,y以及height, width
-            int intVedioWidth = plCam.Width;
-            int intVedioHeight = plCam.Height;
-
-            for (int i = 0; i < results.Length; i++)
-            {
-
-                // 找出方框出現的X與Y
-                int intX = (int)(intVedioWidth * results[i].FaceRectangle.Left / floPhysicalWidth);
-                int intY = (int)(intVedioHeight * results[i].FaceRectangle.Top / floPhysicalHeight);
-                //intX = axWindowsMediaPlayer1.Left + intX;
-                //intY = axWindowsMediaPlayer1.Top + intY;
-
-                // 找出方框的高度與寬度
-                int intHeight = (int)(intVedioHeight * results[i].FaceRectangle.Height / floPhysicalHeight);
-                int intWidth = (int)(intVedioWidth * results[i].FaceRectangle.Width / floPhysicalWidth);
-
-                rect.Add(new Rectangle(intX, intY, intHeight, intWidth));
-            }
-
-            //plTag.BackgroundImage = Image.FromFile(txtFileName.Text);
-            //plTag.BackgroundImageLayout = ImageLayout.Stretch;
-            plCam.Invalidate();
-        }
-
-        private void plTag_Paint(object sender, PaintEventArgs e)
-        {
-            using (Pen pen = new Pen(Color.Green, 1))
-            {
-                for (int i = 0; i < rect.Count; i++)
-                    e.Graphics.DrawRectangle(pen, rect[i]);
-            }
         }
     }
 }

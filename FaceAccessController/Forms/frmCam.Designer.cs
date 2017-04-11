@@ -155,7 +155,6 @@
             this.plCam.Name = "plCam";
             this.plCam.Size = new System.Drawing.Size(633, 478);
             this.plCam.TabIndex = 8;
-            this.plCam.Paint += new System.Windows.Forms.PaintEventHandler(this.plTag_Paint);
             // 
             // frmCam
             // 

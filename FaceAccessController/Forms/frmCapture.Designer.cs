@@ -144,7 +144,6 @@
             this.plTag.Name = "plTag";
             this.plTag.Size = new System.Drawing.Size(515, 283);
             this.plTag.TabIndex = 9;
-            this.plTag.Paint += new System.Windows.Forms.PaintEventHandler(this.plTag_Paint);
             // 
             // picImage
             // 

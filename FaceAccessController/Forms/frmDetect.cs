@@ -20,8 +20,8 @@ namespace FaceAccessController.Forms
 
     public partial class frmDetect : Base.BaseForm
     {
-        List<Rectangle> rect = new List<Rectangle>();
         FaceServiceClient face;
+        ClassLibrary.FacePanelUtility objPlUtil = new ClassLibrary.FacePanelUtility();
 
         public frmDetect()
         {
@@ -38,6 +38,8 @@ namespace FaceAccessController.Forms
             // 讀取設定檔
             base.ReadConfig();
             face = new FaceServiceClient(base.SetupConfig.FaceApiKey);
+            objPlUtil.TargetPanel = plTag;
+            plTag.Paint += objPlUtil.OnPaint;
         }
 
         /// <summary>
@@ -112,7 +114,7 @@ namespace FaceAccessController.Forms
                 txtResult.Text = JsonConvert.SerializeObject(objFaces);
             }
 
-            RenderRectangle(objFaces);
+            objPlUtil.RenderFaceRectangle(objFaces);
         }
 
         enum ImageSource
@@ -163,47 +165,6 @@ namespace FaceAccessController.Forms
             }
 
             txtResult.Text = strContent;
-        }
-
-        private void RenderRectangle(Face[] results)
-        {
-            rect.Clear();
-
-            float floPhysicalHeight = plTag.BackgroundImage.PhysicalDimension.Height;
-            float floPhysicalWidth = plTag.BackgroundImage.PhysicalDimension.Width;
-
-            // 取得事件的x,y以及height, width
-            int intVedioWidth = plTag.Width;
-            int intVedioHeight = plTag.Height;
-
-            for (int i = 0; i < results.Length; i++)
-            {
-
-                // 找出方框出現的X與Y
-                int intX = (int)(intVedioWidth * results[i].FaceRectangle.Left / floPhysicalWidth);
-                int intY = (int)(intVedioHeight * results[i].FaceRectangle.Top / floPhysicalHeight);
-                //intX = axWindowsMediaPlayer1.Left + intX;
-                //intY = axWindowsMediaPlayer1.Top + intY;
-
-                // 找出方框的高度與寬度
-                int intHeight = (int)(intVedioHeight * results[i].FaceRectangle.Height / floPhysicalHeight);
-                int intWidth = (int)(intVedioWidth * results[i].FaceRectangle.Width / floPhysicalWidth);
-
-                rect.Add(new Rectangle(intX, intY, intHeight, intWidth));
-            }
-
-            //plTag.BackgroundImage = Image.FromFile(txtFileName.Text);
-            //plTag.BackgroundImageLayout = ImageLayout.Stretch;
-            plTag.Invalidate();
-        }
-
-        private void plTag_Paint(object sender, PaintEventArgs e)
-        {
-            using (Pen pen = new Pen(Color.Green, 1))
-            {
-                for (int i = 0; i < rect.Count; i++)
-                    e.Graphics.DrawRectangle(pen, rect[i]);
-            }
         }
     }
 }

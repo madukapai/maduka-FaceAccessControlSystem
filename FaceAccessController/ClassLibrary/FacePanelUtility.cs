@@ -81,7 +81,7 @@ namespace FaceAccessController.ClassLibrary
 
         public void OnPaint(object sender, PaintEventArgs e)
         {
-            using (Pen pen = new Pen(Color.Green, 1))
+            using (Pen pen = new Pen(Color.Yellow, 3))
             {
                 for (int i = 0; i < rect.Count; i++)
                     e.Graphics.DrawRectangle(pen, rect[i]);

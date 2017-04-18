@@ -141,8 +141,8 @@ namespace FaceAccessController.Forms
                         lblPersonName.Text = strPersonNameLabel;
                         tiPersonLabel.Enabled = true;
                         plPersonName.Visible = true;
-                        int intFontSize = ((plPersonName.Width / 15) > 48) ? 48 : (plPersonName.Width / 15);
-                        lblPersonName.Font = new Font("微軟正黑體", intFontSize);
+                        // int intFontSize = ((plPersonName.Width / 15) > 24) ? 24 : (plPersonName.Width / 15);
+                        // lblPersonName.Font = new Font("微軟正黑體", intFontSize);
                     }
                 }
             }

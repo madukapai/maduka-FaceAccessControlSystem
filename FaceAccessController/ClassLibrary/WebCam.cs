@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace FaceAccessController.ClassLibrary
 {
@@ -97,13 +98,14 @@ namespace FaceAccessController.ClassLibrary
             string DeviceIndex = Convert.ToString(DeviceID);
             IntPtr oHandle = Container.Handle;
             {
-                MessageBox.Show("You should set the container property");
+                // MessageBox.Show("You should set the container property");
             }
 
             // Open Preview window in picturebox .
             // Create a child window with capCreateCaptureWindowA so you can display it in a picturebox.
 
             hHwnd = capCreateCaptureWindowA(ref DeviceIndex, WS_VISIBLE | WS_CHILD, 0, 0, 640, 480, oHandle.ToInt32(), 0);
+            // hHwnd = capCreateCaptureWindowA(ref DeviceIndex, WS_VISIBLE | WS_CHILD, 0, 0, 640, 480, oHandle.ToInt32(), 0);
 
             // Connect to device
             if (SendMessage(hHwnd, WM_CAP_DRIVER_CONNECT, DeviceID, 0) != 0)
@@ -115,7 +117,7 @@ namespace FaceAccessController.ClassLibrary
                 // Start previewing the image from the camera
                 SendMessage(hHwnd, WM_CAP_SET_PREVIEW, -1, 0);
                 // Resize window to fit in picturebox
-                SetWindowPos(hHwnd, HWND_BOTTOM, 0, 0, Container.Height, Container.Width, SWP_NOMOVE | SWP_NOZORDER);
+                SetWindowPos(hHwnd, HWND_BOTTOM, 0, 0, Container.Width, Container.Height, SWP_NOMOVE | SWP_NOZORDER);
             }
             else
             {
@@ -158,10 +160,22 @@ namespace FaceAccessController.ClassLibrary
             }
         }
 
+        public Image CaptureImage()
+        {
+            IDataObject data;
+            Image oImage = null;
+            SendMessage(hHwnd, WM_CAP_EDIT_COPY, 0, 0);
+            data = Clipboard.GetDataObject();
+            if (data.GetDataPresent(typeof(Bitmap)))
+                oImage = (Image)data.GetData(typeof(System.Drawing.Bitmap));
+            return oImage;
+        }
+
+
         /// <summary>
         /// This function is used to dispose the connection to the device
         /// </summary>
-        #region IDisposable Members
+            #region IDisposable Members
 
         public void Dispose()
 

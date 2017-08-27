@@ -29,6 +29,8 @@ namespace FaceAccessController.Forms
 
             txtEmotionApiKey.Text = base.SetupConfig.EmotionApiKey;
             txtFaceApiKey.Text = base.SetupConfig.FaceApiKey;
+            txtInterval.Text = base.SetupConfig.WebCamInterval.ToString();
+            txtVisionApiKey.Text = base.SetupConfig.VisionApiKey;
         }
 
         /// <summary>
@@ -40,6 +42,8 @@ namespace FaceAccessController.Forms
         {
             base.SetupConfig.EmotionApiKey = txtEmotionApiKey.Text;
             base.SetupConfig.FaceApiKey = txtFaceApiKey.Text;
+            base.SetupConfig.VisionApiKey = txtVisionApiKey.Text;
+            base.SetupConfig.WebCamInterval = int.Parse(txtInterval.Text);
             base.WriteConfig();
             this.Close();
         }

@@ -33,6 +33,7 @@ namespace FaceAccessController.Base
             {
                 EmotionApiKey = "",
                 FaceApiKey = "",
+                VisionApiKey = "",
             };
 
             string strConfig = File.ReadAllText(this.ConfigurationFile);

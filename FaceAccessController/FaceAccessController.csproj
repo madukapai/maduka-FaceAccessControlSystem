@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,13 +48,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ProjectOxford.Common, Version=1.0.308.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ProjectOxford.Common.1.0.308\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Common.dll</HintPath>
+    <Reference Include="Microsoft.ProjectOxford.Common, Version=1.0.324.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ProjectOxford.Common.1.0.324\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectOxford.Emotion, Version=1.0.336.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ProjectOxford.Emotion.1.0.336\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Emotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectOxford.Face, Version=1.2.1.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ProjectOxford.Face.1.2.1.2\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Microsoft.ProjectOxford.Face.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ProjectOxford.Emotion, Version=1.0.331.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ProjectOxford.Emotion.1.0.331.1\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Emotion.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.ProjectOxford.Video, Version=1.0.329.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ProjectOxford.Video.1.2.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectOxford.Vision, Version=1.0.372.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ProjectOxford.Vision.1.0.372\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Vision.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -57,6 +80,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,6 +95,8 @@
     <Compile Include="Base\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClassLibrary\CognitiveUtility.cs" />
+    <Compile Include="ClassLibrary\FacePanelUtility.cs" />
     <Compile Include="ClassLibrary\WebCam.cs" />
     <Compile Include="Forms\frmCam.cs">
       <SubType>Form</SubType>
@@ -78,11 +104,59 @@
     <Compile Include="Forms\frmCam.Designer.cs">
       <DependentUpon>frmCam.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmCapture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCapture.Designer.cs">
+      <DependentUpon>frmCapture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmCognitive.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmCognitive.Designer.cs">
       <DependentUpon>frmCognitive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmComputerVision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmComputerVision.Designer.cs">
+      <DependentUpon>frmComputerVision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDetect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDetect.Designer.cs">
+      <DependentUpon>frmDetect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEmotion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEmotion.Designer.cs">
+      <DependentUpon>frmEmotion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmFaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFaces.Designer.cs">
+      <DependentUpon>frmFaces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmIdentify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmIdentify.Designer.cs">
+      <DependentUpon>frmIdentify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmVerify.Designer.cs">
+      <DependentUpon>frmVerify.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -93,11 +167,38 @@
     <Compile Include="Models\CognitiveModels.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Faces\temp.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Forms\frmCam.resx">
       <DependentUpon>frmCam.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCapture.resx">
+      <DependentUpon>frmCapture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCognitive.resx">
       <DependentUpon>frmCognitive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmComputerVision.resx">
+      <DependentUpon>frmComputerVision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDetect.resx">
+      <DependentUpon>frmDetect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEmotion.resx">
+      <DependentUpon>frmEmotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmFaces.resx">
+      <DependentUpon>frmFaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmIdentify.resx">
+      <DependentUpon>frmIdentify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmVerify.resx">
+      <DependentUpon>frmVerify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -127,6 +228,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 與 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

@@ -20,12 +20,6 @@ namespace FaceAccessController
             InitializeComponent();
         }
 
-        Models.CognitiveModels.Setup objSetup = new Models.CognitiveModels.Setup()
-        {
-            EmotionApiKey = "",
-            FaceApiKey = "",
-        };
-
         /// <summary>
         /// 表單讀取的動作
         /// </summary>
@@ -41,34 +35,81 @@ namespace FaceAccessController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void mExit_Click(object sender, EventArgs e) => Application.Exit();
 
         /// <summary>
         /// 設定Microsoft Cognitive的動作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mCognitive_Click(object sender, EventArgs e)
-        {
-            Forms.frmCognitive objCognitive = new Forms.frmCognitive();
-            objCognitive.MdiParent = this;
-            objCognitive.SetupConfig = objSetup;
-            objCognitive.Show();
-        }
+        private void mCognitive_Click(object sender, EventArgs e) => OpenForm(new Forms.frmCognitive());
 
         /// <summary>
         /// 開啟WebCam的畫面
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mWebCam_Click(object sender, EventArgs e)
+        private void mWebCam_Click(object sender, EventArgs e) => OpenForm(new Forms.frmCam());
+
+        /// <summary>
+        /// 點選設定人員與群組的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mPeopleControl_Click(object sender, EventArgs e) => OpenForm(new Forms.frmUsers());
+
+        /// <summary>
+        /// 照片上傳的動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mCapture_Click(object sender, EventArgs e) => OpenForm(new Forms.frmCapture());
+
+        /// <summary>
+        /// Demo Detect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mDetect_Click(object sender, EventArgs e) => OpenForm(new Forms.frmDetect());
+
+        /// <summary>
+        /// Demo Verify
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mVerify_Click(object sender, EventArgs e)=>OpenForm(new Forms.frmVerify());
+
+        /// <summary>
+        /// Demo Identify
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mIdentify_Click(object sender, EventArgs e) => OpenForm(new Forms.frmIdentify());
+
+        /// <summary>
+        /// Demo Emotion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mEmotion_Click(object sender, EventArgs e) => OpenForm(new Forms.frmEmotion());
+
+        /// <summary>
+        /// Demo Computer Vision
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mComputerVision_Click(object sender, EventArgs e) => OpenForm(new Forms.frmComputerVision());
+
+        /// <summary>
+        /// 開啟指定的表單物件
+        /// </summary>
+        /// <param name="objFrm"></param>
+        private void OpenForm(Form objFrm)
         {
-            Forms.frmCam objCam = new Forms.frmCam();
-            objCam.MdiParent = this;
-            objCam.Show();
+            objFrm.MdiParent = this;
+            objFrm.Show();
+            objFrm.WindowState = FormWindowState.Maximized;
         }
+
     }
 }

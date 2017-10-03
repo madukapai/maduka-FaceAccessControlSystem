@@ -13,8 +13,6 @@ namespace FaceAccessController.ClassLibrary
 {
     public class CognitiveUtility
     {
-        string strRootApiUrl = System.Configuration.ConfigurationManager.AppSettings["RootApiUrl"].ToString();
-
         /// <summary>
         /// 放入人員群組的資料
         /// </summary>
@@ -47,7 +45,7 @@ namespace FaceAccessController.ClassLibrary
         /// </summary>
         /// <param name="ms"></param>
         /// <returns></returns>
-        public async Task<HttpResponseMessage> FaceDetect(MemoryStream ms, string strFaceApiKey)
+        public async Task<HttpResponseMessage> FaceDetect(MemoryStream ms, string strFaceApiKey, string strFaceApiUrl)
         {
             var client = new HttpClient();
 
@@ -64,7 +62,7 @@ namespace FaceAccessController.ClassLibrary
 
                 try
                 {
-                    response = await client.PostAsync(strRootApiUrl, content);
+                    response = await client.PostAsync(strFaceApiUrl, content);
                 }
                 catch (Exception ex)
                 {

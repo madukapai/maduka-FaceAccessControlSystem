@@ -64,7 +64,7 @@ namespace FaceAccessController.Forms
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             oWebCam.Dispose();
 
-            HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey);
+            HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
             string strContent = await response.Content.ReadAsStringAsync();
             Face[] faces = JsonConvert.DeserializeObject<Face[]>(strContent);
             await this.DetectFace(faces);

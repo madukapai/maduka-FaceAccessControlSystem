@@ -101,7 +101,7 @@ namespace FaceAccessController.Forms
             try
             {
                 // faces = await face.DetectAsync(ms);
-                HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey);
+                HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
                 string strContent = await response.Content.ReadAsStringAsync();
                 faces = JsonConvert.DeserializeObject<Face[]>(strContent);
                 objPlUtil.RenderFaceRectangle(faces);

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        視需要在下方的中繼標籤中自訂內容安全性原則。將 'unsafe-inline' 加入 default-src 以啟用內嵌 JavaScript。
+        如需詳細資料，請參閱 http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline';
+            style-src 'self' 'unsafe-inline';
+            media-src *;
+            script-src 'self' 'unsafe-inline' 'unsafe-eval';
+            connect-src * ">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <title>FaceAccessMobile</title>
+</head>
+<body>
+    <script src="scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="scripts/config.js"></script>
+    <p align="center">
+        <img id="img" width="100%" />
+        <br />
+        請使用橫向拍照
+        <input type="button" value="Detect" onclick="javascript: funCaptureCamera();" />
+        <br />
+        <textarea id="txtResult" style="width:100%; height:300px"></textarea>
+        <br />
+        <canvas id="myCanvas" style="display:none;position:absolute;z-index:999;border:5px solid red" />
+    </p>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/drawRectangle.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+    <script language="javascript">
+        document.getElementById("img").height = document.getElementById("img").width * 9 / 16;
+        document.getElementById("myCanvas").height = document.getElementById("img").height;
+        document.getElementById("myCanvas").width = document.getElementById("img").width;
+        document.getElementById("myCanvas").style.top = document.getElementById("img").offsetTop;
+        document.getElementById("myCanvas").style.left = document.getElementById("img").offsetLeft;
+    </script>
+</body>
+</html>

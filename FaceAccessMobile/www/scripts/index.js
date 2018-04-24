@@ -57,24 +57,12 @@ function GetIdentity(imageData) {
         processData: false,
         type: "POST",
         data: imageData,
-        success: onIdentitySuccess,
-        error: onIdentityFail
+        success: onIdentityDone,
+        error: onIdentityDone
     })
 }
 
-function onIdentitySuccess(data) {
+function onIdentityDone(data) {
     document.getElementById("txtResult").value = JSON.stringify(data);
     AddRectangle(document.getElementById('img'), data);
-}
-
-function onIdentityDone(data)
-{
-    alert("done");
-    console.log(data);
-}
-
-
-function onIdentityFail(err)
-{
-    AddRectangle(document.getElementById('img'));
 }

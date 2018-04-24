@@ -25,14 +25,34 @@
             w = data[i].faceRectangle.width * percent;
             h = data[i].faceRectangle.height * percent;
 
-            context.rect(x, y, w, h);
-            context.fillStyle = 'rgba(255, 255, 255, 0)';
-            context.fill();
             context.lineWidth = 2;
             context.strokeStyle = 'yellow';
+            context.strokeRect(x, y, w, h);
+            // 顯示年齡與情緒
+            var intAge = data[i].faceAttributes.age;
+            var emotion = GetEmotion(data[i].faceAttributes.emotion)
+            var gender = data[i].faceAttributes.gender;
+            context.fillStyle = 'yellow';            context.font = (w / 10) + "px Arial";
+            context.fillText(gender + " age:" + intAge + " " + emotion, x, y + h + (w / 10));
+            context.fillText(emotion, x, y + h + (w / 5));
+
+            context.fill();
         }
     }
 
     context.stroke();
     img.style.display = "none";
+}
+
+function GetEmotion(emotion) {
+    var emotionString = "anger";
+    if (emotion.contempt > emotion.anger) { emotionString = "contempt" }
+    if (emotion.disgust > emotion.contempt) { emotionString = "disgust" }
+    if (emotion.fear > emotion.disgust) { emotionString = "fear" }
+    if (emotion.happiness > emotion.fear) { emotionString = "happiness" }
+    if (emotion.neutral > emotion.happiness) { emotionString = "neutral" }
+    if (emotion.sadness > emotion.neutral) { emotionString = "sadness" }
+    if (emotion.surprise > emotion.sadness) { emotionString = "surprise" }
+
+    return emotionString;
 }

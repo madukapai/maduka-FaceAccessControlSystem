@@ -1,33 +1,38 @@
-﻿function AddRectangle(img, x, y, w, h) {
+﻿function AddRectangle(img, data) {
+    if (img.style.display == "none")
+        img.style.display = "block";
+
     // 先取得圖片原本的寬度
     var nImageWidth = img.naturalWidth;
-    var ImageWidth = img.width;
+    var ImageWidth = img.offsetWidth;
 
-    // 算出縮小的比例
-    var percent = img.width / img.naturalWidth;
-    x = x * percent;
-    y = y * percent;
-    w = w * percent;
-    h = h * percent;
-
-    var c = document.getElementById("myCanvas");
-    c.width = img.width;
-    c.height = img.height;
-    var ctx = c.getContext("2d").drawImage(img, 0, 0);
-
-    var canvas = document.getElementById('myCanvas');
-    var context = canvas.getContext('2d');
-
+    // 將圖片畫到Canvas上
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
     canvas.width = img.width;
     canvas.height = img.height;
-    canvas.style.top = img.offsetTop;
-    canvas.style.left = img.offsetLeft;
+    context.drawImage(img, 0, 0, img.width, img.height);
 
+    // 畫出框線
     context.beginPath();
-    context.rect(x, y, w, h);
-    context.fillStyle = 'rgba(255, 255, 255, 0)';
-    context.fill();
-    context.lineWidth = 2;
-    context.strokeStyle = 'blue';
+    if (data != undefined) {
+        var i = 0;
+        for (i = 0; i < data.length; i++) {
+            // 算出縮小的比例
+            var percent = img.width / img.naturalWidth;
+            x = data[i].faceRectangle.left * percent;
+            y = data[i].faceRectangle.top * percent;
+            w = data[i].faceRectangle.width * percent;
+            h = data[i].faceRectangle.height * percent;
+
+            context.rect(x, y, w, h);
+            context.fillStyle = 'rgba(255, 255, 255, 0)';
+            context.fill();
+            context.lineWidth = 2;
+            context.strokeStyle = 'yellow';
+        }
+    }
+
     context.stroke();
+    img.style.display = "none";
 }

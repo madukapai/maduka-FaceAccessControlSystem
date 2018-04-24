@@ -1,6 +1,6 @@
 ﻿function funCaptureCamera() {
     navigator.camera.getPicture(onSuccess, onFail, {
-        quality: 50, destinationType: Camera.DestinationType.DATA_URL, PictureSourceType: 1, EncodingType: 1
+        quality: 80, destinationType: Camera.DestinationType.DATA_URL, PictureSourceType: 1, EncodingType: 1
     });
 }
 
@@ -62,20 +62,9 @@ function GetIdentity(imageData) {
     })
 }
 
-function onIdentitySuccess(data)
-{
-    alert("success");
-    console.log(data);
+function onIdentitySuccess(data) {
     document.getElementById("txtResult").value = JSON.stringify(data);
-
-    /*
-    var i = 0;
-    for (i= 0; i < data.length; i++)
-    {
-        AddRectangle(document.getElementById('img'), data[i].faceRectangle.left, data[i].faceRectangle.top, data[i].faceRectangle.width, data[i].faceRectangle.height)
-    }
-    AddRectangle(document.getElementById('img'), 110, 110, 60, 60);
-    */
+    AddRectangle(document.getElementById('img'), data);
 }
 
 function onIdentityDone(data)
@@ -87,6 +76,5 @@ function onIdentityDone(data)
 
 function onIdentityFail(err)
 {
-    alert("error");
-    console.log(err);
+    AddRectangle(document.getElementById('img'));
 }

@@ -1,13 +1,12 @@
 ﻿function AddRectangle(img, data) {
-    if (img.style.display == "none")
-        img.style.display = "block";
-
     // 先取得圖片原本的寬度
     var nImageWidth = img.naturalWidth;
     var ImageWidth = img.offsetWidth;
 
     // 將圖片畫到Canvas上
     var canvas = document.getElementById("myCanvas");
+    canvas.style.display = "block";
+
     var context = canvas.getContext("2d");
     canvas.width = img.width;
     canvas.height = img.height;
@@ -34,7 +33,7 @@
             var gender = data[i].faceAttributes.gender;
             context.fillStyle = 'yellow';            context.font = (w / 10) + "px Arial";
             context.fillText(gender + " age:" + intAge + " " + emotion, x, y + h + (w / 10));
-            context.fillText(emotion, x, y + h + (w / 5));
+            // context.fillText(emotion, x, y + h + (w / 5));
 
             context.fill();
         }

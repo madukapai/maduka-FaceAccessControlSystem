@@ -7,6 +7,8 @@
 function onSuccess(imageData) {
     var imageContent = "data:image/png;base64," + imageData;
     document.getElementById('img').src = imageContent;
+    document.getElementById('img').style.display = "block";
+    document.getElementById('myCanvas').style.display = "none";
 
     // convert to binary
     var data = makeBlob(imageContent);

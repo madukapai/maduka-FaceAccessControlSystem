@@ -1,18 +1,29 @@
-﻿function funCaptureCamera() {
-    navigator.camera.getPicture(onSuccess, onFail, {
-        quality: 80, destinationType: Camera.DestinationType.DATA_URL, PictureSourceType: 1, EncodingType: 1
-    });
+﻿function funCaptureCamera(x) {
+    navigator.camera.getPicture(
+        function (data) { onSuccess(data, x); },
+        onFail,
+        {
+            quality: 80, destinationType: Camera.DestinationType.DATA_URL, PictureSourceType: 1, EncodingType: 1
+        }
+    );
 }
 
-function onSuccess(imageData) {
+function onSuccess(imageData, func) {
     var imageContent = "data:image/png;base64," + imageData;
     document.getElementById('img').src = imageContent;
     document.getElementById('img').style.display = "block";
     document.getElementById('myCanvas').style.display = "none";
 
+    // 判斷是人臉辨識或是影像辨識
     // convert to binary
     var data = makeBlob(imageContent);
-    GetIdentity(data);
+
+    if (func == "f") {
+        GetIdentity(data);
+    }
+    else if (func == "c") {
+        GetComputerVision(data)
+    }
 }
 
 function onFail(message) {
@@ -64,7 +75,64 @@ function GetIdentity(imageData) {
     })
 }
 
+function GetComputerVision(imageData)
+{
+    var params = {
+        // Request parameters
+        "visualFeatures": "Tags,Description,Faces,Color,Adult",
+        "details": "Celebrities",
+        "language": "en"
+    };
+
+    $.ajax({
+        url: CompoterVisionApiRootUrl + "analyze?" + $.param(params),
+        beforeSend: function (xhrObj) {
+            // Request headers
+            xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", CompoterVisionApiKey);
+        },
+        processData: false,
+        type: "POST",
+        data: imageData,
+        success: onComputerVisionDone,
+        error: onComputerVisionDone
+    })
+}
+
+function GetTranslater(data, source, target) {
+    var params = {
+        // Request parameters
+        "to": target,
+        "text": source
+    };
+
+    var strUrl = TranslaterUrl + "?" + $.param(params);
+    $.ajax({
+        url: strUrl,
+        beforeSend: function (xhrObj) {
+            // Request headers
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", TranslaterApiKey);
+        },
+        type: "GET",
+        success: function (res) { onTranslaterDone(data, res); },
+        error: function (res) { onTranslaterDone(data, res); }
+    })
+}
+
 function onIdentityDone(data) {
     document.getElementById("txtResult").value = JSON.stringify(data);
-    AddRectangle(document.getElementById('img'), data);
+    AddRectangle(document.getElementById('img'), data, "f");
+}
+
+function onComputerVisionDone(data)
+{
+    GetTranslater(data, data.description.captions[0].text, "zh-Hant");
+}
+
+function onTranslaterDone(data, caption)
+{
+    document.getElementById("txtResult").value = JSON.stringify(data);
+    var str = caption.getElementsByTagName("string")[0].textContent;
+    AddRectangle(document.getElementById('img'), data.faces, str);
+
 }

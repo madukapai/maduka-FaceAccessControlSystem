@@ -1,4 +1,4 @@
-﻿function AddRectangle(img, data) {
+﻿function AddRectangle(img, data, source) {
     // 先取得圖片原本的寬度
     var nImageWidth = img.naturalWidth;
     var ImageWidth = img.offsetWidth;
@@ -28,15 +28,32 @@
             context.strokeStyle = 'yellow';
             context.strokeRect(x, y, w, h);
             // 顯示年齡與情緒
-            var intAge = data[i].faceAttributes.age;
-            var emotion = GetEmotion(data[i].faceAttributes.emotion)
-            var gender = data[i].faceAttributes.gender;
+            var intAge = "";
+            var gender = "";
+            var emotion = "";
+
+            if (source == "f") {
+                intAge = data[i].faceAttributes.age;
+                gender = data[i].faceAttributes.gender;
+                emotion = GetEmotion(data[i].faceAttributes.emotion);
+            }
+            else {
+                intAge = data[i].age;
+                gender = data[i].gender;
+            }
+
             context.fillStyle = 'yellow';            context.font = (w / 10) + "px Arial";
             context.fillText(gender + " age:" + intAge + " " + emotion, x, y + h + (w / 10));
             // context.fillText(emotion, x, y + h + (w / 5));
 
-            context.fill();
         }
+
+        if (source != "f") {
+            context.fillStyle = 'yellow';            context.font = "12px Arial";
+            context.fillText(source, 10, 10);
+        }
+
+        context.fill();
     }
 
     context.stroke();

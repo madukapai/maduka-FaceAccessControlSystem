@@ -1,4 +1,4 @@
-﻿function AddRectangle(img, data, source) {
+﻿function AddRectangle(img, data, sourceArray) {
     // 先取得圖片原本的寬度
     var nImageWidth = img.naturalWidth;
     var ImageWidth = img.offsetWidth;
@@ -26,13 +26,14 @@
 
             context.lineWidth = 2;
             context.strokeStyle = 'yellow';
-            context.strokeRect(x, y, w, h);
+            context.strokeRect(x, y, w, h);
+
             // 顯示年齡與情緒
             var intAge = "";
             var gender = "";
             var emotion = "";
 
-            if (source == "f") {
+            if (sourceArray[0][0] == "f") {
                 intAge = data[i].faceAttributes.age;
                 gender = data[i].faceAttributes.gender;
                 emotion = GetEmotion(data[i].faceAttributes.emotion);
@@ -42,20 +43,21 @@
                 gender = data[i].gender;
             }
 
-            context.fillStyle = 'yellow';            context.font = (w / 10) + "px Arial";
+            context.fillStyle = 'yellow';
+            context.font = (w / 10) + "px Arial";
             context.fillText(gender + " age:" + intAge + " " + emotion, x, y + h + (w / 10));
             // context.fillText(emotion, x, y + h + (w / 5));
-
         }
-
-        if (source != "f") {
-            context.fillStyle = 'yellow';            context.font = "12px Arial";
-            context.fillText(source, 10, 10);
-        }
-
-        context.fill();
     }
 
+    if (sourceArray != undefined) {
+        context.fillStyle = 'yellow';
+        context.font = "12px Arial";
+        for (i = 0; i < sourceArray.length; i++)
+            context.fillText(sourceArray[i][0], sourceArray[i][1], sourceArray[i][2]);
+    }
+
+    context.fill();
     context.stroke();
     img.style.display = "none";
 }

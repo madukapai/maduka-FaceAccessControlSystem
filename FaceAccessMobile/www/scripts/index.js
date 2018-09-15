@@ -22,7 +22,10 @@ function onSuccess(imageData, func) {
         GetIdentity(data);
     }
     else if (func == "c") {
-        GetComputerVision(data)
+        GetComputerVision(data);
+    }
+    else if (func == "m") {
+        GetContentModerator(data);
     }
 }
 
@@ -99,6 +102,22 @@ function GetComputerVision(imageData)
     })
 }
 
+function GetContentModerator(imageData) {
+    $.ajax({
+        url: ContnetModeratorUrl,
+        beforeSend: function (xhrObj) {
+            // Request headers
+            xhrObj.setRequestHeader("Content-Type", "image/jpeg");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", ContnetModeratorApiKey);
+        },
+        processData: false,
+        type: "POST",
+        data: imageData,
+        success: onContentModeratorDone,
+        error: onContentModeratorDone
+    })
+}
+
 function GetTranslater(data, source, target) {
     var params = {
         // Request parameters
@@ -121,7 +140,9 @@ function GetTranslater(data, source, target) {
 
 function onIdentityDone(data) {
     document.getElementById("txtResult").value = JSON.stringify(data);
-    AddRectangle(document.getElementById('img'), data, "f");
+    var area = [];
+    area[0] = ["f", 0, 0];
+    AddRectangle(document.getElementById('img'), data, area);
 }
 
 function onComputerVisionDone(data)
@@ -129,10 +150,26 @@ function onComputerVisionDone(data)
     GetTranslater(data, data.description.captions[0].text, "zh-Hant");
 }
 
-function onTranslaterDone(data, caption)
-{
+function onTranslaterDone(data, caption) {
     document.getElementById("txtResult").value = JSON.stringify(data);
     var str = caption.getElementsByTagName("string")[0].textContent;
-    AddRectangle(document.getElementById('img'), data.faces, str);
+    var area = [];
+    area[0] = [str, 10, 15];
+    AddRectangle(document.getElementById('img'), data.faces, area);
+}
 
+function onContentModeratorDone(data) {
+    document.getElementById("txtResult").value = JSON.stringify(data);
+
+    var AdultClassificationScore = data.AdultClassificationScore;
+    var IsImageAdultClassified = data.IsImageAdultClassified;
+    var RacyClassificationScore = data.RacyClassificationScore;
+    var IsImageRacyClassified = data.IsImageRacyClassified;
+
+    var area = [];
+    var str1 = "少兒不宜?:" + IsImageRacyClassified + " " + RacyClassificationScore;
+    var str2 = "成人?:" + IsImageAdultClassified + " " + AdultClassificationScore;
+    area[0] = [str1, 10, 15];
+    area[1] = [str2, 10, 30];
+    AddRectangle(document.getElementById('img'), undefined, area);
 }

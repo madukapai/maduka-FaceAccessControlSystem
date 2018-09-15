@@ -1,8 +1,11 @@
-﻿var FaceApiRootUrl = "[在這裡放上FaceApi根目錄]";
-var FaceApiKey = "[FaceApi金鑰]";
+﻿var FaceApiRootUrl = "https://eastasia.api.cognitive.microsoft.com/face/v1.0/";
+var FaceApiKey = "";
 
-var CompoterVisionApiRootUrl = "[在這裡放上ComputerVisionApi根目錄]";
-var CompoterVisionApiKey = "[ComputerVisionApi金鑰]";
+var CompoterVisionApiRootUrl = "https://westus.api.cognitive.microsoft.com/vision/v1.0/";
+var CompoterVisionApiKey = "";
 
 var TranslaterUrl = "https://api.microsofttranslator.com/V2/Http.svc/Translate";
-var TranslaterApiKey = "[TextTranslatorApi金鑰]";
+var TranslaterApiKey = "";
+
+var ContnetModeratorUrl = "https://eastasia.api.cognitive.microsoft.com/contentmoderator/moderate/v1.0/ProcessImage/Evaluate";
+var ContnetModeratorApiKey = "";

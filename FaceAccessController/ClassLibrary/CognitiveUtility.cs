@@ -39,38 +39,5 @@ namespace FaceAccessController.ClassLibrary
             if (objGroup.Length > 0)
                 cbx.SelectedIndex = intChoiceIndex;
         }
-
-        /// <summary>
-        /// 透過WebAPI進行人臉比對的動作
-        /// </summary>
-        /// <param name="ms"></param>
-        /// <returns></returns>
-        public async Task<HttpResponseMessage> FaceDetect(MemoryStream ms, string strFaceApiKey, string strFaceApiUrl)
-        {
-            var client = new HttpClient();
-
-            // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", strFaceApiKey);
-            HttpResponseMessage response = null;
-
-            // Request body
-            byte[] bytes = ms.ToArray();
-
-            using (var content = new ByteArrayContent(bytes))
-            {
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-
-                try
-                {
-                    response = await client.PostAsync(strFaceApiUrl, content);
-                }
-                catch (Exception ex)
-                {
-                    string strErr = ex.Message;
-                }
-            }
-
-            return response;
-        }
     }
 }

@@ -100,10 +100,8 @@ namespace FaceAccessController.Forms
             Face[] faces = null;
             try
             {
-                // faces = await face.DetectAsync(ms);
-                HttpResponseMessage response = await new CognitiveUtility().FaceDetect(ms, base.SetupConfig.FaceApiKey, base.SetupConfig.FaceApiUrl);
-                string strContent = await response.Content.ReadAsStringAsync();
-                faces = JsonConvert.DeserializeObject<Face[]>(strContent);
+                ms.Seek(0, SeekOrigin.Begin);
+                faces = await face.DetectAsync(ms);
                 objPlUtil.RenderFaceRectangle(faces);
             }
             catch (Exception ex)
